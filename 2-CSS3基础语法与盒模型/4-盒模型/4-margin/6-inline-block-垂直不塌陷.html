@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>6-inline-block-垂直不塌陷</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+
+            .box-container {
+                width: 100px;
+                margin: 0 auto;
+            }
+
+            .box {
+                width: 100px;
+                height: 100px;
+                background-color: lightblue;
+                display: inline-block;
+                color: white;
+                /* overflow: hidden; */
+                padding: 0;
+                margin: 0;
+                border: none;
+                outline: none;
+            }
+
+            .box1 {
+                margin-bottom: 70px;
+            }
+
+            .box2 {
+                margin-top: 50px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="box-container">
+
+            <div class="box box1">测试inline-block元素的垂直margin是否塌陷</div>
+            <!-- <br /> -->
+            <div class="box box2">测试inline-block元素的垂直margin是否塌陷</div>
+            <!-- <br /> -->
+        </div>
+
+        <div style="position: fixed; bottom: 0; right: 0; padding: 20px;">
+
+            <a href="./5-inline-垂直无效.html">上一页</a>
+            <a href="./7-float-block-垂直不塌陷.html">下一页</a>
+        </div>
+    </body>
+
+</html>
