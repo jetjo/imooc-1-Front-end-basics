@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2-绝对定位的参考点</title>
+        <style>
+            body,
+            p {
+                padding: 0;
+                margin: 0;
+            }
+
+            body {
+                font-weight: 700;
+                width: 1080px;
+                height: 960px;
+                background-color: lightblue;
+                color: yellow;
+            }
+
+            div {
+                width: 200px;
+                height: 200px;
+            }
+
+            div.default-base {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                background-color: #f0ff;
+                color: yellow;
+            }
+
+            div.box {
+                border: 2px solid #000f;
+                margin: 0 auto;
+            }
+
+            div.box.pos-r {
+                position: relative;
+            }
+
+            div.box.pos-a {
+                position: absolute;
+            }
+
+            div.box.box1 {
+                width: 500px;
+                height: 500px;
+                background-color: red;
+            }
+
+            div.box.box1>.box.box1-1 {
+                width: 300px;
+                height: 300px;
+                background-color: green;
+            }
+
+            div.box.box1>.box.box1-1>.box.box1-1-1 {
+                width: 100px;
+                height: 100px;
+                background-color: blue;
+            }
+
+            div.box.box1>.box.box1-1>.box.box1-1-1>.content {
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                background-color: #000f;
+
+                top: 0;
+                left: 0;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        淡蓝色(lightblue)区域为body
+        <div class="default-base">绝对定位默认以浏览器窗口作为定位参考点</div>
+        <div class="box box1">
+            <!-- <div class="box box1 pos-r"> -->
+            <div class="box box1-1">
+                <!-- <div class="box box1-1 pos-r"> -->
+                <div class="box box1-1-1 pos-r">
+                    <p class="content">子绝父相</p>
+                </div>
+            </div>
+        </div>
+        <div class="box box1">
+            <!-- <div class="box box1 pos-a"> -->
+            <div class="box box1-1 pos-a">
+                <div class="box box1-1-1">
+                    <!-- <div class="box box1-1-1 pos-a"> -->
+                    <p class="content">子绝父绝</p>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
