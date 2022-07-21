@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>1-相对位置的性质</title>
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+            }
+
+            div.def {
+                width: 400px;
+                height: 400px;
+                background-color: #f06;
+
+            }
+
+            div.def.por {
+                color: #fff;
+                background-color: #60f;
+                position: relative;
+                top: 200px;
+                left: 200px;
+
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="def por">
+            <ul>
+                <li>不脱离标准文档流(老家留坑)</li>
+                <li>不脱离标准文档流(所显示的位置只是相对于自己的投影)，<strong>‘投影定位’</strong></li>
+                <li>top、left、bottom和right不会影响其他元素的位置，因此可能会与其他元素产生堆叠</li>
+                <li>margin等影响元素尺寸的属性也会影响其他元素的位置，因为老家留坑，坑会影响别人，影子不会影响别的元素</li>
+            </ul>
+        </div>
+        <div class="def"></div>
+    </body>
+
+</html>
