@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2-4-垂直居中</title>
+        <style>
+            div.box {
+                width: 500px;
+                height: 500px;
+                border: 5px solid rgba(255, 0, 0, 0.476);
+            }
+
+            div.box-1 {
+                --width: 200px;
+                --height: 200px;
+                width: var(--width);
+                height: var(--height);
+                background-color: rgba(0, 128, 0, 0.319);
+            }
+
+            .pos-a {
+                position: absolute;
+            }
+
+            div.pos-a.box-1 {
+                top: 50%;
+                left: 50%;
+                --margin-left: calc(var(--width) * (-.5));
+                --margin-top: calc(var(--height) * (-.5));
+                /* margin: var(--margin-top) auto auto var(--margin-left); */
+                margin-left: var(--margin-left);
+                margin-top: var(--margin-top);
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="box pos-a">
+            <div class="box-1 pos-a"></div>
+        </div>
+    </body>
+
+</html>

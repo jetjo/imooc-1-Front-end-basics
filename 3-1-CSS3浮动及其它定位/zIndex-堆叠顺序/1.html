@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>1</title>
+        <style>
+            h1 {
+                text-align: center;
+                line-height: 100px;
+                font-weight: 700;
+                color: rgba(255, 217, 0, 0.677);
+            }
+
+            .box {
+                width: 200px;
+                height: 200px;
+            }
+
+            /* .box:first-child { */
+            .box:first-of-type {
+                top: 150px;
+                left: 50px;
+                background-color: gold;
+            }
+
+            /* .box:nth-child(2) { */
+            .box:nth-of-type(2) {
+                top: 300px;
+                left: 100px;
+                background-color: green;
+            }
+
+            .box>.box-1 {
+                width: 100px;
+                height: 100px;
+            }
+
+            .box:first-of-type>.box-1 {
+                bottom: -25px;
+                right: -25px;
+                background-color: blue;
+            }
+
+            .box:nth-of-type(2)>.box-1 {
+                top: 0;
+                left: 100px;
+                background-color: red;
+            }
+
+            .pos-a {
+                position: absolute;
+            }
+
+            .z9 {
+                z-index: 9;
+            }
+
+            .z9999999 {
+                z-index: 9999999;
+            }
+
+            .box {
+                /* 连子元素box-1都透明了 */
+                /* opacity: .29; */
+            }
+
+            /* .box:first-child { */
+            .box:first-of-type {
+                background-color: rgba(255, 217, 0, 0.241);
+            }
+
+            /* .box:nth-child(2) { */
+            .box:nth-of-type(2) {
+                background-color: rgba(0, 128, 0, 0.212);
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="box pos-a z9999999">
+            <div class="box-1 pos-a z9"></div>
+        </div>
+        <div class="box pos-a z9">
+            <div class="box-1 pos-a z9999999"></div>
+        </div>
+    </body>
+
+</html>

@@ -6,13 +6,50 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>1-绝对定位的性质</title>
+        <style>
+            div {
+                width: 200px;
+                height: 200px;
+            }
+
+            div.div1 {
+                background-color: rgba(255, 0, 0, 0.202);
+            }
+
+            div.div2 {
+                background-color: rgba(0, 128, 0, 0.16);
+                margin-top: 50px;
+                margin-left: 50px;
+            }
+
+            div.div3 {
+                background-color: rgba(0, 0, 255, 0.375);
+            }
+
+            .pos-a {
+                position: absolute;
+            }
+
+        </style>
     </head>
 
     <body>
         <ul>
             <li>脱离标准文档流，释放自己的位置</li>
-            <li>不干扰其他元素，而是对其他元素进行压盖</li>
+            <li>不干扰其他元素，而是对其他元素进行压盖, 并且其层级高于默认文档流</li>
+            <li>虽然脱离了标准文档流，但在不指定定位属性（left、top、right、bottom）的情况下，
+                其还会位于标准文档流为其分配的空间（漂浮于其上），
+                ，只是那个空间已被他释放，不属于他，
+                后续元素也不知道他原来在那，他的空间会被标准文档流的后续元素使用，所以产生压盖</li>
+            <li>虽然脱离了标准文档流，但在不指定定位属性（left、top、right、bottom）的情况下，
+                默认，其还会位于标准文档流为其分配的空间（漂浮于其上），并不会位于定位参考盒子的左上角，
+                说明在绝对定位时，定位属性的默认值是auto？？？或者none？？？
+                但肯定不是0</li>
+            <li><mark>绝对定位的行内元素也可以设置宽高</mark> </li>
         </ul>
+        <div class="div1"></div>
+        <div class="div2 pos-a"></div>
+        <div class="div3"></div>
     </body>
 
 </html>
