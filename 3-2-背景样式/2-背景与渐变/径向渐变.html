@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>径向渐变</title>
+        <style>
+            div {
+                /* width: 300px; */
+                margin: 0 auto;
+                height: 300px;
+                border: 1px solid #000;
+                --circle-width: 80% 200% at 50% 138%;
+                --circle-position: 50% 100%;
+                background-image: radial-gradient(var(--circle-width), white 40%, red 40%, red 45%, transparent 45%),
+                    radial-gradient(var(--circle-width), green 45%, green 50%, transparent 50%),
+                    radial-gradient(var(--circle-width), blue 50%, blue 55%, transparent 55%);
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div></div>
+    </body>
+
+</html>
