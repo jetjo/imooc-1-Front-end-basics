@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>消除margin塌陷的方法</title>
+        <style>
+            .box {
+                /* 不能添加padding和border，会干扰测试 */
+                /* border: 1px solid #000; */
+                /* 不能添加padding和border，会干扰测试 */
+                /* padding: 1px; */
+                background-color: #f0f;
+            }
+
+            .box .content {
+                width: 200px;
+                height: 200px;
+                background-color: gold;
+                margin: 20px 0;
+            }
+
+            .clear-margin-1-bfc {
+                overflow: hidden;
+            }
+
+            .clear-margin-2-border {
+                /* border-width是0不行 */
+                /* border: 0 solid #000; */
+                border: 1px solid #000;
+            }
+
+            .clear-margin-3-padding {
+                /* padding是0不行 */
+                /* padding: 0; */
+                padding: 1px;
+            }
+
+            .clear-margin-4::after,
+            .clear-margin-4::before {
+                content: '';
+                display: block;
+            }
+
+            .clear-margin-5-around-bfc {
+                overflow: hidden;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <!-- <div class="box"> -->
+        <!-- <div class="box clear-margin-1-bfc"> -->
+        <!-- 消除塌陷方法一：形成BFC -->
+        <!-- <div class="box clear-margin-2-border"> -->
+        <!-- 消除塌陷方法二：添加border -->
+        <!-- <div class="box clear-margin-3-padding"> -->
+        <!-- 消除塌陷方法三：添加padding -->
+
+        <!-- <div class="box clear-margin-4"> -->
+        <!-- 消除塌陷的方法四：添加before、after伪元素, 测试无效！！！ -->
+
+        <div class="box">
+            <!-- 消除塌陷方法五：为有垂直margin的每一个子元素外面包一个BFC盒子，这样不仅消除了子盒子margin塌陷到父盒子外面的情形，还能消除子盒子之间的margin的塌陷 -->
+            <div class="clear-margin-5-around-bfc">
+                <div class="content"></div>
+            </div>
+            <div class="clear-margin-5-around-bfc">
+                <div class="content"></div>
+            </div>
+        </div>
+    </body>
+
+</html>

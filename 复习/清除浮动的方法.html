@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>清除浮动的ff</title>
+        <style>
+            .box {
+                border: 1px solid #000;
+            }
+
+            .box .content {
+                width: 200px;
+                height: 200px;
+                background-color: gold;
+                float: left;
+            }
+
+            .something-html-content {
+                width: 100px;
+                height: 100px;
+                background-color: #f0f;
+            }
+
+
+            /* 清除浮动方法一：形成BFC */
+            .clear-fix-1-bfc {
+                overflow: hidden;
+                display: flex;
+            }
+
+            .clear-fix-2::after {
+                content: '';
+                display: block;
+                /* 只能是block */
+                clear: both;
+                /* 不可以 */
+                /* float: left; */
+            }
+
+            .clear-fix-3 {
+                clear: both;
+            }
+
+            .clear-fix-4-wall {
+                clear: both;
+            }
+
+            .h200 {
+                height: 200px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="box">
+            <!-- <div class="box clear-fix-1-bfc"> -->
+            <!-- 清除浮动方法一：形成BFC -->
+            <!-- <div class="box clear-fix-2"> -->
+            <!-- 清除浮动方法二：添加after伪元素，并为其设置clear both -->
+            <div class="content"></div>
+            <div class="content"></div>
+        </div>
+        <div class="clear-fix-4-wall h200"></div>
+        <!-- 清除浮动方法四：在浮动元素后面隔一道墙 -->
+        <div class="something-html-content">
+            <!-- <div class="something-html-content clear-fix-3"> -->
+            <!-- 清除浮动方法三：为后面受影响的元素添加clear both -->
+
+        </div>
+    </body>
+
+</html>
