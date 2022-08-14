@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>赋值运算符的优先级</title>
+    </head>
+
+    <body>
+        按下F12打开控制台
+        <script>
+            console.log(`赋值运算符包括=、+=、-=、*=、/=、%=、a++、++a、a--、--a, 其中++a、--a的优先级最高，其次是a++和a--，最后是其它赋值运算符`);
+            console.log(`=、+=、-=、*=、/=、%=的优先级相同，运算顺序即赋值顺序是从右往左赋值，赋值表达式的值是赋值符号右边的值`);
+            console.log(`let a=b=c=2;会先计算表达式c=2,给c赋值为2后返回2，然后执行b=2....`);
+            let a = 3, b = 4, c;
+            console.log(`let a = ${ a }`);
+            console.log(`let b = ${ b }`);
+            console.log(
+                `表达式 c = a++ + b++ + ++a + ++b的执行流程是：`
+            );
+            console.log(`c = 3 + b++ + ++a + ++b`);
+            console.log(`a = 3 + 1`);
+            console.log(`c = 3 + 4 + ++a + ++b`);
+            console.log(`b = 4 + 1`);
+            console.log(`a = 4 + 1`);
+            console.log(`c = 3 + 4 + 5 + ++b`);
+            console.log(`b = 5 + 1`);
+            console.log(`c = 3 + 4 + 5 + 6`);
+            console.log(`c = 7 + 5 + 6`);
+            console.log(`c = 12 + 6`);
+            console.log(`c = 18`);
+            console.log(`返回18`);
+            console.log(`所以结果是${ 18 }`);
+        </script>
+    </body>
+
+</html>
