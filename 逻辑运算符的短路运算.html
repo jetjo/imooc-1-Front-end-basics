@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>逻辑运算符的短路运算</title>
+    </head>
+
+    <body>
+        按下F12打开控制台
+        <script>
+            console.log(`true && 5 && NaN 的结果是 ${ true && 5 && NaN }，不是false！！！`);
+            console.log(`0 && 5 && NaN 的结果是 ${ 0 && 5 && NaN }，不是false！！！, 因为0是逻辑假，所以没有必要继续运算了直接返回0`);
+
+            console.log(`'true' || 5 || NaN 的结果是 ${ typeof ('true' || 5 || NaN) }类型的${ 'true' || 5 || NaN }，不是布尔类型的true！！！`);
+        </script>
+    </body>
+
+</html>

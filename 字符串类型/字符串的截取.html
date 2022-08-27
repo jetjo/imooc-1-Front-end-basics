@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>字符串的截取</title>
+    </head>
+
+    <body>
+        按下F12打开控制台
+        <script>
+            //从中截取出‘学习’两个字
+            var str = '好好学习，天天向上';
+            //方法1, 不会改变原字符串
+            console.log(str.substring(2, 4), str);
+            //substring方法的两个参数顺序可以颠倒，substring方法内部会自动选取值小的参数作为截取的开始索引，值大的参数作为截取的终止，不包括终止的索引
+            console.log(str.substring(4, 2), str);
+            // 方法2, 不会改变原字符串
+            console.log(str.slice(2, 4), str);
+            //slice方法的两个参数不能颠倒
+            console.log(str.slice(4, 2), str);
+            //但是slice的参数可以是负值，表示从右往左数
+            console.log(str.slice(-7, -5), str);
+            console.log(str.slice(2, -5), str);
+            console.log(str.slice(-7, 4), str);
+        </script>
+    </body>
+
+</html>
