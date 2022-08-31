@@ -21,6 +21,9 @@
             .box1 {
                 margin-left: 200px;
                 margin-top: 200px;
+                border-width: 10px;
+                /* box-sizing: border-box; */
+                box-sizing: content-box;
             }
 
         </style>
@@ -29,7 +32,7 @@
     <body>
         鼠标指针事件参数对象的offsetX/Y属性比较特殊，它是指的鼠标指针到事件源元素的左上角的横纵坐标值，
         <br> 即使当前的事件监听器是绑定在祖先元素上的，并且也和事件的阶段无关；
-        <br>测试发现offsetX/Y的最小值是-1
+        <br>测试发现offsetX/Y的最小值是负的边框的厚度, 与style属性box-sizing无关
         <div class="box box1" id="box1">
             <!-- <div class="box box2" id="box2"> -->
             <div class="box box3" id="box3"></div>
