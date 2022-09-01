@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>事件方法-stop</title>
+        <style>
+            .modal {
+                width: 400px;
+                height: 140px;
+                background-color: #333;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -200px;
+                margin-top: -70px;
+                display: none;
+            }
+
+        </style>
+    </head>
+
+    <body style="background-color: yellow; border: 10px solid green;">
+        <input type="button" value="点我" id="btn">
+        <div class="modal" id="modal"></div>
+        <script>
+            btn.onclick = (e) =>
+            {
+                e.stopPropagation();
+                modal.style.display = 'block';
+            }
+
+            // 因为modal弹出框是绝对定位的，所有body并没有被撑开，
+            // document.body.onclick = () =>
+            document.onclick = () =>
+            {
+                console.log('body 点击');
+                modal.style.display = 'none';
+            }
+
+            modal.onclick = (e) =>
+            {
+                e.stopPropagation();
+            }
+        </script>
+    </body>
+
+</html>

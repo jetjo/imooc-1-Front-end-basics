@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>键盘事件参数</title>
+    </head>
+
+    <body>
+        键盘事件参数的keyCode属性，返回键码，键盘上的每个键都只有一个唯一的键码，大小写字母的键码是相同的，因为a和A都是同一个键<br>
+        键盘事件参数的charCode属性，返回字符码，只有字符按键有字符码，其他按键没有字符码 <br>
+        keypress事件只会在按下的键是字符键（包括组合按键情形）时引发，并且在按下按键未抬起（释放）时就会触发，，如果不释放（抬起）按键，则事件回持续触发 <br>
+        keydown事件：如果按下的键是字符键（包括组合按键情形），在按键未抬起（释放）前，事件会持续触发，如果按键不是字符键，即使按键未释放，也只触发一次 <br>
+        keydown事件：charCode总是0 <br>
+        keypress事件：keyCode和charCode值保持一致 <br>
+        在非英文输入模式下，不会触发keypress事件，并且keydown事件的keyCode总是229 <br>
+        对于字母按键，keydown事件的keyCode的值总是大写字母对应的字符码 <br>
+        对于字符和数字公用的键，keydown事件的keyCode的值总是数字对应的字符码 <br>
+        <input type="text" id="filed">
+        <div class="info" id="infoKeydown"></div>
+        <div class="info" id="infoKeypress"></div>
+
+        <!-- Uncaught ReferenceError: infoBodyKeypress is not defined -->
+        <!-- <div class="info" id="info-body-keydown"></div> -->
+        <div class="info" id="infoBodyKeydown"></div>
+        <div class="info" id="infoBodyKeypress"></div>
+        <script>
+            filed.onkeydown = (e) =>
+            {
+                console.log('input框keydown', e);
+                infoKeydown.innerHTML = `input框keydown参数；e.keyCode=${ e.keyCode }, e.charCode=${ e.charCode }`;
+            }
+            filed.onkeypress = (e) =>
+            {
+                console.log('input框keypress', e);
+                infoKeypress.innerHTML = `input框keypress参数；e.keyCode=${ e.keyCode }, e.charCode=${ e.charCode }`;
+            }
+
+            document.body.onkeydown = (e) =>
+            {
+                console.log('body keydown', e);
+                infoBodyKeydown.innerHTML = `body keydown参数；e.keyCode=${ e.keyCode }, e.charCode=${ e.charCode }`;
+            }
+            document.body.onkeypress = (e) =>
+            {
+                console.log('body keypress', e);
+                infoBodyKeypress.innerHTML = `body keypress参数；e.keyCode=${ e.keyCode }, e.charCode=${ e.charCode }`;
+            }
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>基本特性</title>
+    </head>
+
+    <body>
+        1、全局变量自动成为window对象的成员 <br>
+        2、js文件共享全局上下文 <br>
+        3、内置对象普遍都是window的方法 <br>
+        <script>
+            console.log(window.hasOwnProperty('setInterval'), window.setInterval === setInterval);
+            console.log(window.hasOwnProperty('console'), window.console.log === console.log);
+        </script>
+    </body>
+
+</html>

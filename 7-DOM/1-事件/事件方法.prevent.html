@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>事件方法-preventDefault</title>
+    </head>
+
+    <body style="height: 200vh;">
+        事件参数的preventDefault方法阻止事件的默认行为，比如mousewheel事件的默认行为是页面或其他组件内部的滚动 <br>
+        字符按键的默认行为是往聚焦的input内输入字符 <br>
+        preventDefault案例1：输入过滤 <br> 只能输入小写字母和数字：<input type="text" name="" id="filed"> <br>
+        <script>
+            filed.onkeypress = (e) =>
+            {
+                console.log(e.charCode);
+                if (!(e.charCode >= 48 && e.charCode <= 57 || e.charCode >= 97 && e.charCode <= 122))
+                {
+                    e.preventDefault();
+                }
+            }
+        </script>
+        preventDefault案例2：阻止默认滚动 <br>
+        <div style="background-color: black; width: 100px;height: 100px;" id="box"></div>
+        <script>
+            box.onmousewheel = (e) =>
+            {
+                //阻止body滚动
+                e.preventDefault();
+                console.log(e.deltaY, e.deltaX);
+                // 当完全横向滚动时，没有纵向增量，deltaY是-0；
+                if (e.deltaY == 0) return;
+                const oldV = Number(filed.value) || 0;
+                const delta = e.deltaY > 0 ? 3 : -3;
+                filed.value = oldV + delta;
+            }
+        </script>
+    </body>
+
+</html>
