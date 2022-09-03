@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>定位,主要学习sticky定位</title>
+        <style>
+            body {
+                /* overflow: hidden; */
+                /* display: inline; */
+            }
+
+            a {
+                line-height: 50px;
+                padding: 10px;
+                margin: 10px;
+            }
+
+            a#link {
+                position: absolute;
+                top: 100px;
+            }
+
+            /* 选择器中写上标签名，方便知晓默认样式 */
+            h2#pos1 {
+                position: absolute;
+                bottom: -200px;
+            }
+
+            /* 固定定位的元素使用唯一的id选择器，防止位置重叠 */
+            div#info {
+                /* position: fixed; */
+                /* 在正常布局流的基础上，相对于最近的祖先块元素（overflow）进行定位 */
+                position: sticky;
+                margin: 0;
+                /* #info元素的前面有两个元素，一个是固定定位的h2元素，固定定位脱离了文档流，
+                所以其不会对正常文档流中#info的位置产生影响
+                所以正常文档流布局时#info元素距离最近的祖先块元素（overflow）（本例中就是body）
+                顶部的距离是body的8px外边距+a元素的line-height(50px) , 由于a元素是行内文本，
+                所以其垂直方向的内外边距都无效，
+                写在#info前面的还有一个a#link,虽然a默认是行内文本，但是#link设置了绝对定位，脱离了
+                正常文本流，其垂直方向的内外边距、高度都会对自身产生效果，但是不会对#info的位置产生影响，
+                所以#info的top值大于58px时才会有效果*/
+                top: 58px;
+                min-height: 10px;
+                width: 100vh;
+                border: 1px solid gold;
+                background-color: gold;
+            }
+
+        </style>
+    </head>
+
+    <body style="height: 200vh;width: 200vw;">
+        <a href="#pos1">跳转到锚点1</a>
+        <a id="link" href="#pos1">跳转到锚点1</a>
+        <h2 id="pos1" class="pos1">锚点1</h2>
+        <div id="info" class="info"></div>
+    </body>
+
+</html>
