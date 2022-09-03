@@ -10,7 +10,7 @@
 
     <body>
         1、全局变量自动成为window对象的成员 <br>
-        2、js文件共享全局上下文 <br>
+        2、js文件共享作用域， 非模块js文件之间没有作用域的隔离 <br>
         3、内置对象普遍都是window的方法 <br>
         <script>
             console.log(window.hasOwnProperty('setInterval'), window.setInterval === setInterval);

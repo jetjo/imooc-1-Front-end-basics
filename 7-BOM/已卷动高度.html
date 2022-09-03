@@ -58,6 +58,10 @@
                 window.location.href = String(e);
                 refreshInfo();
             }
+            function setPosPre()
+            {
+                window.history.go(-1);
+            }
             window.onload = refreshInfo;
             window.onscroll = refreshInfo;
         </script>
@@ -71,6 +75,8 @@
             <input type="button" value="返回顶部" onclick="goPos(19)">
             <input type="button" value="返回顶部（另一种办法）" onclick="setLoc('#pos0')">
             <input type="button" value="跳转到锚点1" onclick="goPos(1020)">
+            <input type="button" value="返回上一个锚点" onclick="setPosPre()">
+            <a href="javascript:history.back();">返回上一个锚点（另一种办法）</a>
         </div>
         <h2 id="pos0">顶部</h2>
         <h2 id="pos1">锚点1</h2>
