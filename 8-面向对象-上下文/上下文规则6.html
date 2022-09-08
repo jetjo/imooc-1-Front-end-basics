@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>上下文规则6</title>
+        <style>
+            .box {
+                width: 200px;
+                height: 200px;
+                border: 1px solid gold;
+                margin: 0 20px;
+                float: left;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        DOM事件处理函数执行时的上下文就是绑定此函数的DOM元素 <br>
+        公式：DOM元素.on事件名 = function(e) { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;//执行上下文是DOM元素 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;//e.target不一定是执行上下文，e.target是触发事件的元素，执行上下文this是绑定这个函数的元素 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;//e.currentTarget相当于执行上下文this <br>
+        } <br>
+
+        <div id="box1" class="box"></div>
+        <div id="box2" class="box"></div>
+        <div id="box3" class="box"></div>
+
+        <script>
+            function setBgToRed(e)
+            {
+                var self = this;//备份此处的上下文
+                setTimeout(function ()
+                {
+                    self.style.background = 'red';
+                }, 0);
+
+                setTimeout(() =>
+                {
+                    this.style.background = 'green';
+                    // }, 3000);看不到变绿的效果
+                }, 2000);
+
+                // setTimeout(() =>
+                // {
+                //     e.currentTarget.style.background = 'skyblue';
+                // }, 3000);
+                var currentTarget = e.currentTarget;
+                setTimeout(() =>
+                {
+                    currentTarget.style.background = 'skyblue';
+                    // }, 3000);看不到变绿的效果
+                }, 5000);
+            }
+            box1.onclick = setBgToRed;
+            box2.onclick = setBgToRed;
+            box3.onclick = setBgToRed;
+        </script>
+    </body>
+
+</html>
