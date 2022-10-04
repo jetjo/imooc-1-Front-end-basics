@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>font-family属性</title>
+
+        <style>
+            @font-face {
+                font-family: '阿里巴巴普惠体--2.0-55--Regular';
+                font-display: swap;
+                font-size: 400;
+                src: url(../../font/阿里巴巴普惠体--2.0-55--Regular/k-Y35oTZzaCn19YQ1c1cL.woff) format("woff"),
+                    url("../../font/阿里巴巴普惠体--2.0-55--Regular/k-Y35oTZzaCn19YQ1c1cL.woff2") format("woff2");
+            }
+
+            @font-face {
+                font-family: "站酷酷黑 子集";
+                font-display: swap;
+                font-weight: 400;
+                src: url("../../font/站酷酷黑-Regular--subset/VsFgBwO8WXTm_LmzMzY4P.woff") format("woff"),
+                    url("../../font/站酷酷黑-Regular--subset/VsFgBwO8WXTm_LmzMzY4P.woff2") format("woff2");
+            }
+
+            @font-face {
+                font-family: "ZCOOL_KuHei_Regular";
+                font-display: swap;
+                font-weight: 400;
+                /* src: url("../../font/站酷酷黑-全集/ZCOOL_KuHei_Regular.ttf") format('ttf')无效！！！; */
+                src: url("../../font/站酷酷黑-全集/ZCOOL_KuHei_Regular.ttf") format('opentype');
+            }
+
+            .para {
+                font-family: "宋体", "PingFang SC";
+                font-family: SimSun, "PingFang SC";
+                font-family: SimSun, SimSong, "PingFang SC";
+                font-family: SimSun, "简宋", "PingFang SC";
+            }
+
+            .para1 {
+                /* 娃娃体只有常规体，为什么加粗有效？？？？？ */
+                font-weight: bold;
+                /* font-family: "娃娃体", "PingFang SC";无效 */
+                font-family: "娃娃体-简", "PingFang SC";
+                /* font-family: "DF WaWa SC", "PingFang SC";怎么分都无效，必须如下一行写全 */
+                font-family: "DFWaWaSC-W5", "PingFang SC";
+            }
+
+            .para2 {
+                font-family: "Times New Roman", "微软雅黑", "PingFang SC";
+                font-family: "Times New Roman", "Microsoft Yahei", "PingFang SC";
+            }
+
+            .para3 {
+                /* serif字体库里既有英文也有中文，所以中文也是使用serif字体展示 */
+                font-family: serif, "Times New Roman", "微软雅黑", "PingFang SC";
+                font-family: serif, "Times New Roman", "Microsoft Yahei", "PingFang SC";
+            }
+
+            .para4 {
+                font-family: sans-serif, serif, "Times New Roman", "微软雅黑", "PingFang SC";
+                font-family: sans-serif, serif, "Times New Roman", "Microsoft Yahei", "PingFang SC";
+            }
+
+            .para5 {
+                /* font-weight: bold;因为魏碑体只有粗体，所以字体粗细不受控制 */
+                /* 字体信息：
+                    PostScript名称	WeibeiSC-Bold
+                            全名	魏碑-简 粗体 */
+                /* font-family: "魏碑 简", "PingFang SC";无效 */
+                font-family: "魏碑-简", "PingFang SC";
+                /* font-family: "魏碑-简 粗体", "PingFang SC";无效 */
+                font-family: "Weibei SC", "PingFang SC";
+                /* font-family: "WeibeiSC", "PingFang SC";无效 */
+                font-family: "WeibeiSC-Bold", "PingFang SC";
+            }
+
+            .para6 {
+                font-family: "站酷酷黑 子集", "魏碑-简", "PingFang SC";
+            }
+
+            .para7 {
+                font-family: "阿里巴巴普惠体--2.0-55--Regular", "PingFang SC";
+            }
+
+            .para8 {
+                font-family: "ZCOOL_KuHei_Regular", "魏碑-简", "PingFang SC";
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <p class="para">get imooc, 慕课网</p>
+        <p class="para1">get imooc, 慕课网</p>
+        <p class="para2">get imooc, 慕课网</p>
+        <p class="para3">get imooc, 慕课网</p>
+        <p class="para4">get imooc, 慕课网</p>
+        <p class="para5">get imooc, 慕课网</p>
+        <p class="para6">get imooc, 慕课网，不在"站酷酷黑 子集"字库中的字</p>
+        <p class="para7">get imooc, 慕课网</p>
+        <p class="para8">get imooc, 慕课网，不在"站酷酷黑"字库中的字???没有。。。</p>
+    </body>
+
+</html>
