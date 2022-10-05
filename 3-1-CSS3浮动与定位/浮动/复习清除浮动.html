@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>复习清除浮动的概念</title>
+        <style>
+            .div-box {
+                width: 100px;
+                height: 100px;
+                float: left;
+            }
+
+            .box1 {
+                /* clear: right;无效 */
+                background-color: rgb(230, 121, 121);
+            }
+
+            .box2 {
+                /* clear: left; */
+                background-color: rgb(71, 213, 121);
+            }
+
+            .box3 {
+                /* clear: left; */
+                background-color: rgb(81, 87, 197);
+            }
+
+            .text-box {
+                /* display: inline-block; */
+                display: block;
+                /* clear: left; */
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <span class="text-box">
+            <!-- 如果把span元素换成块元素，文字就不会被后面的浮动元素影响 -->
+            1、clear属性的概念：sets whether an element must be moved below (cleared) floating elements that precede it.
+        </span>
+        <div class="div-box box1"></div>
+        <div class="div-box box2"></div>
+        <span class="text-box">
+            <!--  -->
+            2、好像只有在盒子是block时，clear才生效
+        </span>
+        <div class="div-box box3"></div>
+        <span class="text-box">
+            <!--  -->
+            3、
+        </span>
+    </body>
+
+</html>

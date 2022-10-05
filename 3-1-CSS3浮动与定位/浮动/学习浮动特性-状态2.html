@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>学习浮动的特性</title>
+        <style>
+            body {
+                margin: 0;
+            }
+
+            span.text-box {
+                display: block;
+                border: 10px dashed #2f2;
+                margin: 10px;
+
+                /* 打开浏览器控制台，逐渐增加margin-top的值，会发现被此选择器选中的元素之前的元素也跟着向下移动， */
+                /* 原因是body没有形成BFC,margin-top的值塌陷到了body外，导致body向下移动 */
+                margin-top: 50px;
+                padding: 10px;
+            }
+
+            div.fl-box {
+                border: 1px solid #000;
+                width: 50px;
+                height: 50px;
+                margin: 55px;
+            }
+
+            .fl {
+                float: left;
+            }
+
+            .fr {
+                float: right;
+            }
+
+            div.box1 {
+                margin-bottom: 30px;
+            }
+
+            div.box2 {
+                margin-bottom: 50px;
+            }
+
+            div.box3 {
+                margin-bottom: 40px;
+            }
+
+            div.box4 {
+                margin-bottom: 60px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="fl-box box1 fl"></div>
+        <div class="fl-box box2 fr"></div>
+        <div class="fl-box box3 fr"></div>
+        <div class="fl-box box4 fl"></div>
+        <span class="text-box">1、When applied to non-floating blocks, it moves the border edge of the element down until
+            it is below the
+            margin edge of all relevant floats.
+            The non-floated block's top margin collapses.</span>
+    </body>
+
+</html>

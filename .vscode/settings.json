@@ -3,5 +3,8 @@
         "avart",
         "Weibei",
         "ZCOOL"
-    ]
+    ],
+    "editor.tokenColorCustomizations": {
+        "comments": "#22f"
+    }
 }

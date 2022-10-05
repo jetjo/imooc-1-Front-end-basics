@@ -30,7 +30,11 @@
             /* 鼠标放在选择器上，显示其权重为(0, 1, 1) */
             /* 书写顺序上，无论此选择器位于选择器（clearfix:first-child::after）的前与后，同一个css属性都会一选择器（clearfix:first-child::after）为准， */
             /* 可知伪类也是有权重的 */
-            .clearfix::after {
+            /* .clearfix:last-child::after {无效，渲染的页面中，它不是最后一个元素。。。 */
+            .clearfix:last-of-type:after {
+                /* .clearfix::after { */
+                /* ++++++++++++++++++++++++++++这个选择器可以注释掉，只需要给第一个.clearfix添加after伪元素即可 ++++++++++++++++++++++++++++*/
+                /* ++++++++++++++++++++++++++++清除浮动，是只清除后来的元素的浮动影响 ++++++++++++++++++++++++++++*/
                 content: '';
                 display: block;
                 clear: both;
