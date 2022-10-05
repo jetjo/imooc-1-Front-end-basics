@@ -7,13 +7,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>学习相对定位</title>
         <style>
+            /* 注意这里是一个冒号，两个冒号不行 */
+            :root {
+                /* html { */
+                /* 不生效 */
+                /* 必须在 body元素上同时设置才生效 */
+                /* overflow: hidden; */
+            }
+
             body {
                 margin: 0;
                 padding: 0;
                 border: 1px solid red;
                 background-color: skyblue;
                 /* 不生效 */
-                overflow: hidden;
+                /* 必须在html元素上同时设置才生效 */
+                /* overflow: hidden; */
             }
 
             section {
