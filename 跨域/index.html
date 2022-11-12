@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script>
+            window.document.domain = 'site.com';
+        </script>
+    </head>
+
+    <body>
+        <!-- 和window.open不同，在iframe中直接无法打开：
+            但是不影响onload回调
+        Refused to display 'https://www.google.com/' in a frame because it set 'X-Frame-Options' to 'sameorigin'. -->
+        <!-- <iframe src="https://www.google.com" frameborder="0" id="win"></iframe> -->
+        <!-- IANA 保留域名，能打开，但是仍然有跨域问题 -->
+        <iframe src="https://site.com:8080/运算符参考.html" frameborder="0" id="win"></iframe>
+        <script>
+            /* win.contentWindow.onload和win.onload只有一处区别：
+            如果win来自不同的域, win.contentWindow.onload无法访问 */
+            // win.contentWindow.onload = () =>//无效
+            // win.contentDocument.domain = 'site.com';
+            win.onload = () =>
+            {
+                // 访问不同域的window的各种属性都无法访问，除了以下四个例外
+                /*                 1、contentWindow可以读
+                                2、contentDocument可以读
+                                3、contentWindow.location可以读写
+                                4、contentWindow.location.href可以写 */
+                const wind = win.contentWindow;//Ok
+                const windDoc = win.contentDocument;
+
+                try
+                {
+                    const location = win.contentWindow.location;//Ok
+                    const href = win.contentWindow.location.href;
+                } catch (error)
+                {
+                    console.error(error);
+                }
+
+                // win.contentWindow.location.href = '/';Ok
+                // win.contentWindow.location = '/';
+                win.onload = null;
+            }
+        </script>
+    </body>
+
+</html>
