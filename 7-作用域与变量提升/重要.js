@@ -13,12 +13,18 @@ function a()
 {
     console.log(2);
 }
-console.log(a);//1?
+console.log(a, '--------------------');//1?
 var a = 3;
-console.log(a);//3?
+console.log(a, '--------------------');//3?
 function a()
 {
-    console.log(4);
+    console.log(7774, '--------------------');
 }
-console.log(a);//3?
+console.log(a, '--------------------');//3?
 a();//Uncaught TypeError: a is not a function?
+
+
+function a()
+{
+    console.log(11111117774, '--------------------');
+}
