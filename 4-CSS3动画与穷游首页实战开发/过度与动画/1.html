@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>过渡与动画</title>
+        <style>
+            .box {
+                border: 1px solid #000;
+                position: relative;
+                height: 100px;
+            }
+
+            .box .face {
+                width: 50px;
+                height: 50px;
+                background-color: gold;
+                position: absolute;
+                left: 0;
+            }
+
+            .box .face {
+                transition: left 3s linear 0s;
+                transition-timing-function: ease;
+                transition-timing-function: ease-in;
+                transition-timing-function: ease-out;
+                transition-timing-function: ease-in-out;
+                transition-timing-function: cubic-bezier(.49, -0.85, .43, 1.78);
+            }
+
+            .box:hover .face {
+                left: 700px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="box">
+            <p class="face"></p>
+        </div>
+    </body>
+
+</html>

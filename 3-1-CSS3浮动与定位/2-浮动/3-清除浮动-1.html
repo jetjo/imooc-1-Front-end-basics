@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>3-清除浮动=1</title>
+        <style>
+            .h100 {
+                --height: 100px;
+                /* line-height: 50px; */
+            }
+
+            .comment {
+                box-sizing: content-box;
+                margin: 0 auto;
+                padding: 0;
+                /* 新发现：单独设置border后，无论是否设置宽高！！！都不再发生父子垂直外间距传递的现象 */
+                /* 如果注释掉，子盒子的垂直外间距会变为父盒子之间的垂直外边距，并且有塌陷 */
+                /* 不能形成BFC，但是可以消除外间距塌陷 */
+                border: 1px solid #00f8;
+                /* overflow: hidden; */
+                /* clear: both; */
+                background-color: #f006;
+                /* width: 600px;
+                height: var(--height); */
+            }
+
+            .comment:first-child {
+                background-color: #ff06;
+            }
+
+            .comment>div {
+                padding: 0;
+                margin: 10px 0 20px;
+                border: 1px solid #0f0f;
+                box-sizing: border-box;
+                width: 600px;
+                height: calc(var(--height) - 20px);
+                background-color: #f008;
+                /* text-align: center; */
+            }
+
+        </style>
+        <style>
+            p {
+                margin: 0;
+            }
+
+            .bfc {
+                overflow: hidden;
+                /* 此垂直方向的外间距仍然是塌陷的 */
+                margin: 10px 0;
+                background-color: lightgreen;
+            }
+
+            .bfc>p {
+                width: 200px;
+                height: 200px;
+                background-color: gold;
+                float: left;
+                /* 此垂直方向的外间距不再传递给包含盒子，因为包含盒子形成了BFC */
+                margin: 10px;
+
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="h100 comment">
+            <div>浮动的元素一定要封闭在盒子内部，否则会对页面的后续元素产生影响 <br>
+                打开控制台，取消父盒子的外边距， 试一下！！！有意外收获！！！
+            </div>
+        </div>
+        <div class="h100 comment">
+            <div>清除浮动的方法一：形成BFC</div>
+        </div>
+        <div class="bfc">
+            <p></p>
+            <p></p>
+        </div>
+        <div class="bfc">
+            <p></p>
+            <p></p>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>2-BFC规范与浏览器差异</title>
+        <style>
+            .box {
+                width: 400px;
+                /* height: 200px; */
+                border: 10px solid #000;
+                margin: 20px 0;
+            }
+
+            .w200 {
+                width: 200px;
+            }
+
+            .h200 {
+                height: 200px;
+            }
+
+            .bc-d63 {
+                background-color: #dd6633;
+            }
+
+            .bc-df0 {
+                background-color: #ddff00;
+            }
+
+            /* 形成BFC，但是不实用，不能单纯为了形成BFC而浮动 */
+            .fl {
+                float: left;
+            }
+
+            /* 形成BFC */
+            .pos-abs {
+                position: absolute;
+                /* top: 0; */
+                /* left: 0; */
+            }
+
+            /* 形成BFC，但是不实用，会影响后面行内元素的位置。使其并排 */
+            .inline-block {
+                display: inline-block;
+            }
+
+            /* 形成BFC */
+            .of-hidden {
+                overflow: hidden;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <h1>形成BFC的方法：</h1>
+        <ul>
+            <li>设置float不为none</li>
+            <li>设置position不为static和relative</li>
+            <li>设置display为inline-block、flex、inline-flex</li>
+            <li>设置overflow为hidden</li>
+        </ul>
+        <p>从以上方法可以猜测，除了display默认值为inline-block的元素（比如img）之外，大多数元素默认都没有形成BFC</p>
+        <div>
+            <div class="box">
+                <div class="fl bc-d63 w200 h200"></div>
+                <div class="fl bc-df0 w200 h200"></div>
+            </div>
+            <!-- <div class="box h200">
+                <div class="fl bc-d63 w200 h200"></div>
+                <div class="fl bc-df0 w200 h200"></div>
+            </div> -->
+            <div class="box fl">
+                <div class="fl bc-d63 w200 h200">fl</div>
+                <div class="fl bc-df0 w200 h200"></div>
+            </div>
+            <div class="box pos-abs">
+                <div class="fl bc-d63 w200 h200">pos-abs</div>
+                <div class="fl bc-df0 w200 h200"></div>
+            </div>
+            <div class="box inline-block">
+                <div class="fl bc-d63 w200 h200">inline-block</div>
+                <div class="fl bc-df0 w200 h200"></div>
+            </div>
+            <div class="box of-hidden">
+                <div class="fl bc-d63 w200 h200">inline-block</div>
+                <div class="fl bc-df0 w200 h200"></div>
+            </div>
+        </div>
+    </body>
+
+</html>

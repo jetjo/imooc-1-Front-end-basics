@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>上下文规则3</title>
+    </head>
+
+    <body>
+        数组或者类数组对象（有length属性, 成员名是自然数和0）枚举出函数进行调用，上下文是数组或者类数组对象 <br>
+        公式：数组[下标]() <br>
+
+        <script>
+            var arr = ['a', 'c', function ()
+            {
+                console.log(this[1]);
+            }]
+            arr[2]();
+        </script>
+
+        <script>
+            function fn()
+            {
+                arguments[3]();
+            }
+            fn('A', 'B', 'C', function ()
+            {
+                console.log(this[1]);
+            })
+        </script>
+    </body>
+
+</html>

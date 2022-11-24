@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>11-子inline-block-父inline-block-垂直不塌陷</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+                border: none;
+                outline: none;
+            }
+
+            .box-container {
+                width: 600px;
+                margin: 0 auto;
+                background-color: yellow;
+                display: inline-block;
+            }
+
+            .box {
+                width: 100px;
+                height: 100px;
+                background-color: lightblue;
+
+                margin: 40px;
+                display: inline-block;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="box-container">
+            <p class="box"></p>
+            <p class="box"></p>
+        </div>
+
+        <div style="position: fixed; bottom: 0; right: 0; padding: 20px;">
+
+            <a href="./10-子inline-block-父block-垂直不塌陷.html">上一页</a>
+            <a href="./12.html">下一页</a>
+        </div>
+    </body>
+
+</html>

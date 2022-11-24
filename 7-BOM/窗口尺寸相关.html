@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>尺寸相关</title>
+    </head>
+
+    <body style="height: 200vh;width: 200vw; margin: 0;padding: 0;">
+        <div id="info"></div>
+        <div id="infoBeforeLoad"></div>
+        <div id="infoLoad"></div>
+        <div id="infoResize"></div>
+        <script>
+            function logSize(element)
+            {
+                (element || info).innerHTML = `<br> <br> <br>${ (element || info).id } <br>
+                window.innerWidth=${ window.innerWidth } //包含滚动条的宽度<br>
+                document.documentElement.clientWidth = ${ document.documentElement.clientWidth } //内宽，不含滚动条的宽度<br>
+                window.getComputedStyle(document.body).width/2=${ parseInt(window.getComputedStyle(document.body).width) / 2 } <br>
+                window.getComputedStyle(info).width=${ window.getComputedStyle(info).width } <br>
+                window.outerWidth=${ window.outerWidth } //包含窗口的边框及边框阴影的厚度<br>
+                <br>
+                `;
+                /*                 window.innerHeight=${ window.innerHeight } //包含滚动条的宽度<br>
+                                document.documentElement.clientHeight = ${ document.documentElement.clientHeight } //内高，不含滚动条的宽度<br>
+                                window.getComputedStyle(document.body).height/2=${ parseInt(window.getComputedStyle(document.body).height) / 2 } <br>
+                                window.getComputedStyle(info).height=${ window.getComputedStyle(info).height } <br>
+                                window.outerHeight=${ window.outerHeight } //包含窗口的边框及边框阴影的厚度<br> */
+            }
+            window.onresize = (e) =>
+            {
+                console.log('窗口尺寸改变事件', e);
+                logSize(infoResize);
+            }
+            window.onload = (e) =>
+            {
+                console.log('窗口加载事件', e);
+                logSize(infoLoad);
+            }
+            logSize(infoBeforeLoad);
+        </script>
+    </body>
+
+</html>

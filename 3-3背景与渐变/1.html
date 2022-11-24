@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>背景与渐变</title>
+        <style>
+            div.box {
+                display: inline-block;
+                margin: 10px;
+            }
+
+            div.div1 {
+                /* 只写一个时，指的是width，height默认为auto */
+                background-size: auto 60px;
+                background-size: 60px;
+                background-image: url("avart.jpg");
+                /* background-repeat: no-repeat; */
+                width: 200px;
+                height: 200px;
+                /* box-sizing: border-box; */
+                border: 30px dashed #00fa;
+                padding: 20px;
+                /* 
+                background-clip: border-box;
+                background-clip: padding-box;
+                background-clip: content-box;
+
+                background-color: gold; */
+
+                /* opacity: .3; */
+            }
+
+            div.div2 {
+                background-clip: padding-box;
+            }
+
+            div.div3 {
+                background-clip: content-box;
+            }
+
+            div.box.content-bg--no-repeat div.div1 {
+                background-repeat: no-repeat;
+            }
+
+            div.test-bg-origin div.div1 {
+                /* 背景起源只有这三个值 */
+                background-origin: border-box;
+                background-origin: padding-box;
+                background-origin: content-box;
+            }
+
+            div.test-bg-position div.div1 {
+                /* 只写一个时，指的是水平位置，垂直位置默认变为center */
+                background-position: center;
+                /* bottom指的是图片的下边缘贴着图片起源区域下边缘 */
+                background-position: bottom;
+                /*  right指的是图片的右边缘贴着图片起源区域右边缘 */
+                background-position: right;
+                background-position: center bottom;
+                background-position: right center;
+                background-position: 10px;
+                background-position: 20px;
+                background-position: 30px;
+                background-position: 50px;
+                background-position: 60px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div>
+
+            <div class="box">
+
+                <p>验证背景裁切， 默认行为</p>
+                <div class="div1"></div>
+            </div>
+            <div class="box">
+                <p>裁切到padding-box</p>
+                <div class="div1 div2"></div>
+            </div>
+            <div class="box">
+                <p>裁切到content-box</p>
+                <div class="div1 div3"></div>
+            </div>
+        </div>
+        <p>在上面的基础上，统一设置no-repeat</p>
+        <div>
+
+            <div class="box content-bg--no-repeat">
+
+                <p>验证背景裁切， 默认行为</p>
+                <div class="div1"></div>
+            </div>
+            <div class="box content-bg--no-repeat">
+                <p>裁切到padding-box</p>
+                <div class="div1 div2"></div>
+            </div>
+            <div class="box content-bg--no-repeat">
+                <p>裁切到content-box</p>
+                <div class="div1 div3"></div>
+            </div>
+        </div>
+        <p>在上面的基础上，测试背景起源</p>
+        <div>
+
+            <div class="box content-bg--no-repeat test-bg-origin">
+
+                <p>验证背景裁切， 默认行为</p>
+                <div class="div1"></div>
+            </div>
+            <div class="box content-bg--no-repeat test-bg-origin">
+                <p>裁切到padding-box</p>
+                <div class="div1 div2"></div>
+            </div>
+            <div class="box content-bg--no-repeat test-bg-origin">
+                <p>裁切到content-box</p>
+                <div class="div1 div3"></div>
+            </div>
+        </div>
+        <p>在上面的基础上，测试背景位置</p>
+        <div>
+
+            <div class="box content-bg--no-repeat test-bg-origin test-bg-position">
+
+                <p>验证背景裁切， 默认行为</p>
+                <div class="div1"></div>
+            </div>
+            <div class="box content-bg--no-repeat test-bg-origin test-bg-position">
+                <p>裁切到padding-box</p>
+                <div class="div1 div2"></div>
+            </div>
+            <div class="box content-bg--no-repeat test-bg-origin test-bg-position">
+                <p>裁切到content-box</p>
+                <div class="div1 div3"></div>
+            </div>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>1-块级元素特点</title>
+        <style>
+            body>div {
+                background-color: aliceblue;
+                margin: 10px auto;
+            }
+
+            body>div::after {
+                content: '这是div';
+                display: block;
+                margin: 20px 0;
+                color: red;
+            }
+
+            body>div:nth-of-type(1) {
+                width: 200px;
+                height: 200px;
+            }
+
+            body>div:nth-of-type(2) {
+                height: 200px;
+            }
+
+            body>p {
+                height: 100px;
+                background-color: darkgreen;
+                margin: 20px 0;
+            }
+
+            body>p::after {
+                content: '这是p';
+                display: block;
+                margin: 20px 0;
+                color: red;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div>1、不能并排显示</div>
+        <div>2、能设置宽高</div>
+        <div>3、不设置宽时自动撑满</div>
+        <div>4、常见的块级元素有：
+            <ul>
+                <li>div</li>
+                <li>section</li>
+                <li>header</li>
+                <li>h系列</li>
+                <li>li</li>
+                <li>ul</li>
+            </ul>
+        </div>
+
+        <p></p>
+        <p></p>
+
+        <div style="position: fixed; bottom: 0; right: 0; padding: 20px;">
+            <a href="./2-行内元素特点.html">下一页</a>
+        </div>
+    </body>
+
+</html>

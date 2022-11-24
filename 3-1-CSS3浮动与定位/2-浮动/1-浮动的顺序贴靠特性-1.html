@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>1-盒子的顺序贴靠特性-1</title>
+        <style>
+            body>div {
+                width: 1000px;
+                height: 100px;
+                border: 10px solid red;
+                box-sizing: content-box;
+            }
+
+            body>div>div {
+                width: 200px;
+                height: 200px;
+                box-sizing: border-box;
+                float: left;
+            }
+
+            body>div>div:nth-child(1) {
+                background-color: orange;
+                height: 100px;
+            }
+
+            body>div>div:nth-child(2) {
+                background-color: orange;
+            }
+
+
+            body>div>div:nth-child(3) {
+                background-color: pink;
+                height: 80px;
+                width: 180px;
+            }
+
+            body>div>div:nth-child(4) {
+                background-color: greenyellow;
+                height: 100px;
+            }
+
+            body>div>div:nth-child(7) {
+                background-color: blue;
+                width: 201px;
+                color: white;
+                font-weight: 700;
+            }
+
+            body>div>div.fr {
+                float: right;
+                width: 50px;
+            }
+
+            body>div>div.fr:nth-child(5) {
+                height: 100px;
+                background-color: #f0f;
+            }
+
+            body>div>div.fr:nth-child(6) {
+                height: 50px;
+                background-color: rgb(184, 232, 10);
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div class="fr"></div>
+            <div class="fr"></div>
+            <div>子盒子会按顺序进行贴靠，如果没有足够空间，则会再寻找前一个与其浮动方向相同的兄弟元素</div>
+        </div>
+    </body>
+
+</html>

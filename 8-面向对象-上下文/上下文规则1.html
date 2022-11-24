@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>上下文规则1</title>
+    </head>
+
+    <body>
+        对象打点调用方法（对象.方法()），方法的上下文是这个对象 <br>
+        <script>
+            function fn()
+            {
+                console.log(this.a + this.b);
+            }
+            var obj = {
+                a: 33,
+                b: 66,
+                fn
+            }
+            //全局fn函数和obj.fn方法指向的是堆内存中的同一个位置
+            var a = 3, b = 6;
+            obj.fn();//输出99
+        </script>
+
+        <script>
+            var obj1 = {
+                a: 1,
+                b: 2,
+                fn: function ()
+                {
+                    console.log(this.a + this.b);
+                }
+            }
+            var obj2 = {
+                a: 3,
+                b: 4,
+                fn: obj1.fn
+            }
+            // 由于函数是引用对象，所以obj1.fn和obj2.fn是堆内存中的同一个函数
+            obj2.fn();//输出7
+        </script>
+
+        <script>
+            function outer()
+            {
+                var a = 11;
+                var b = 22;
+                return {
+                    a: 33,
+                    b: 44,
+                    fn: function ()
+                    {
+                        console.log(this.a + this.b);
+                    }
+
+                }
+            }
+            outer().fn();
+        </script>
+    </body>
+
+</html>

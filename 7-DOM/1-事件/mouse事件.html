@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>事件顺序</title>
+        <link rel="stylesheet" href="box.css">
+    </head>
+
+    <body>
+        mouseenter事件不冒泡，这很好理解，因为鼠标指针进入一个元素之前，一定要先进入这个元素的父元素，所以mouseenter事件发生时，<br>
+        鼠标已经处于父元素内部了，父元素的mouseenter事件早就发生了，子节点上的mouseenter事件不能算作上级节点的指针进入事件，<br>
+        所以mouseenter事件不该冒泡 <br>
+        mouseleave与mouseenter类似，也不会冒泡; <br>
+        mouseenter事件与css的:hover类似。<br>
+        <div class="box box1" id="box1">
+            <div class="box box2" id="box2">
+                <div class="box box3" id="box3"></div>
+            </div>
+        </div>
+        <script>
+            /**
+             * e: 元素实例，元素要有id
+             * evn: 事件名称，不带on开头
+            */
+            function bindListener(e, evn, msg, isDom0 = true, isBubble = true)
+            {
+                if (isDom0 && isBubble)
+                {
+                    e['on' + evn] = (_e) =>
+                    {
+                        // console.log(_e);
+                        console.log(e.id + ', on, 冒泡,' + msg + ', currentElement: ' + _e.currentTarget?.id + ', targetElement:  ' + _e.target?.id);
+                    }
+                }
+                else
+                {
+                    e.addEventListener(evn, (_e) =>
+                    {
+                        // console.log(_e);
+                        console.log(e.id + (isBubble ? ', 冒泡, ' : ', 捕获, ') + msg + ', currentElement: ' + _e.currentTarget?.id + ', targetElement:  ' + _e.target?.id);
+                    }, !isBubble);
+                }
+            }
+        </script>
+
+        <script>
+            // bindListener(box2, 'mouseenter', '测试mouseenter事件有没有冒泡');
+            // bindListener(box1, 'mouseenter', '测试mouseenter事件有没有冒泡');
+            bindListener(box2, 'mouseleave', '测试mouseleave事件有没有冒泡');
+            bindListener(box1, 'mouseleave', '测试mouseleave事件有没有冒泡');
+            /* bindListener(box2, 'mouseover', '测试mouseover事件有没有冒泡');
+            bindListener(box1, 'mouseover', '测试mouseover事件有没有冒泡'); */
+        </script>
+
+        <script>
+            // bindListener(box1, 'mouseenter', '测试mouseenter事件会不会被上级节点捕获', false, false);
+        </script>
+    </body>
+
+</html>

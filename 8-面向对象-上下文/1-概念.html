@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>上下文的概念</title>
+    </head>
+
+    <body>
+        1、这是个好习惯，因该长期坚持 <br>
+        2、遛狗拴绳，这是个好习惯，因该长期坚持 <br>
+        3、早睡早起，这是个好习惯，因该长期坚持 <br>
+        上面第一句话就缺少上下文，无法得知“这是个...”中的“这”指的是什么 <br>
+        上面的第2、3句中的“遛狗拴绳”和“早睡早起”分别是各自的上下文，<br>
+        可见“这是个好习惯”中的“这”代指的是什么，在确定上下文之前，是“不知道的” ,是“不确定的” <br>
+        在第2句中的“这”指代的上下文是“遛狗拴绳” ，<br>
+        在第3句中的“这”指代的上下文是“早睡早起”。<br>
+
+        在js中，this关键字就相当于“这是个好习惯”中的“这”，用来指代上下文，<br>
+        所以js的函数中this关键字是什么，取决于函数的调用方式，函数的调用方式决定了函数的上下文是什么！<br>
+        按下F12打开控制台查看示例
+        <script>
+            var obj = {
+                a: 1,
+                b: 2,
+                logSum()
+                {
+                    console.log(this.a + this.b);//问：控制台输出的和是什么； 答案：不知道
+                }
+            }
+            obj.logSum();//和是3
+            var logSum = obj.logSum;
+            logSum();// 和是NaN,因为全局上下文window中没有定义变量a和b, 相当于undefine + undefined
+        </script>
+    </body>
+
+</html>

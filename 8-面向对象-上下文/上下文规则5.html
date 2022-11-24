@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>上下文规则5</title>
+    </head>
+
+    <body>
+        定时器、延时器调用函数，函数运行时的上下文是全局window对象 <br>
+        公式：定/延时器(函数,毫秒数) <br>
+        <script>
+            var obj = {
+                a: 1,
+                b: 2,
+                fn: function ()
+                {
+                    console.log(this.a + this.b);
+                }
+            }
+            var a = 10, b = 20;
+            setTimeout(() =>
+            {
+                obj.fn();
+            }, 0);
+            setTimeout(obj.fn, 0);
+        </script>
+    </body>
+
+</html>

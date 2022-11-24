@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>数字取整</title>
+    </head>
+
+    <body>
+        按下F12打开控制台
+        <script>
+            console.log(`向下取整的办法有两种，一种是使用parseInt方法，其内部会先将数字转换为字符串，然后将其从小数点处截断；第二种方法是使用静态方法Math.floor，floor是地板的意思`);
+            console.log(`向上取整的方法是使用静态方法Math.ceil，ceil是天花板的意思`)
+            console.log(`四舍五入的方法是静态方法Math.round`);
+            console.log(`Math.floor(1.9)的结果是${ Math.floor(1.9) }`)
+            console.log(`Math.ceil(1.1)的结果是${ Math.ceil(1.1) }`);
+            console.log(`Math.round(1.9)的结果是${ Math.round(1.9) }`)
+            console.log(`Math.round(1.1)的结果是${ Math.round(1.1) }`);
+            console.log(`Math.floor(null)的结果是${ Math.floor(null) }`);
+            console.log(`Math.ceil(null)的结果是${ Math.ceil(null) }`);
+            console.log(`Math.round(null)的结果是${ Math.round(null) }`);
+            console.log(`可见对象Math上的静态方法，当传入的参数类型不是数字时，会在背后使用Number()先转换为数字`);
+        </script>
+    </body>
+
+</html>

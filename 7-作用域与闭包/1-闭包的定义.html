@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>闭包的定义</title>
+    </head>
+
+    <body>
+        闭包：函数和定义函数的作用域中被函数使用到的变量的组合 <br>
+        闭包使得在一个作用域A内调用另外一个作用域 B（从A中访问不到B中的变量）传递过来的函数而得到正确的结果成为可能 <br>
+        每定义一个函数就会产生一个闭包， 只是如果不在另外的作用域调用函数，体会不到闭包的存在 <br>
+        对于其它隔离的作用域而言，闭包使得本作用域的变量变得私有，且被闭包记住了
+
+        闭包的特性：1记忆性（离开定义时的作用域后不会清除）、2模拟后端语言的私有变量、3可以从外部函数传惨，动态生成函数
+
+        <script>
+            function closure()
+            {
+                //私有化
+                const name = 'world';
+                return function ()
+                {
+                    alert(`hello ${ name }`);
+                }
+            }
+            const func = closure();
+
+            const name = 'mar';
+            func();//
+
+
+            //动态定义函数
+            function def_closure(a)
+            {
+                // return function ()
+                // {
+                //     console.log(a++);
+                // }
+
+
+                //形式2 返回对象
+                return {
+                    log()
+                    {
+                        console.log(a++);
+                    }
+                }
+            }
+            def_closure(1);
+            def_closure(555);
+
+        </script>
+    </body>
+
+</html>

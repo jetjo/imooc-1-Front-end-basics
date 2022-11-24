@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>尾调用优化</title>
+    </head>
+
+    <body>
+        按下F12打开控制台，测试方法factorial_tco和factorial的时空复杂度
+        <script>
+            function factorial(n)
+            {
+                if (n == 1) return 1;//递归出口
+                return n * factorial(n - 1);
+            }
+            window.factorial = factorial;
+            //Tail Call Optimization，TCO？？？
+            const multi = [1];
+            function factorial_tco(n, flag = false)
+            {
+                if (!flag) multi.splice(0, multi.length, 1);
+                if (n == 1) return multi.reduce((pre, cur) => pre * cur, 1);//递归出口
+                multi.push(n);
+                return factorial_tco(n - 1, true);
+            }
+            window.factorial_tco = factorial_tco;
+        </script>
+    </body>
+
+</html>

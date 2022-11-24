@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>经典面试题</title>
+    </head>
+
+    <body>
+        按下F12打开控制台
+        <script>
+            var funcArr = [];
+            for (var i = 0; i < 5; i++)
+            {
+                // funcArr中的函数共享内存中的同一个变量i
+                funcArr.push(function ()
+                {
+                    alert(i);
+                })
+            }
+            funcArr[2]();// funcArr中的函数共享内存中的同一个变量i，所以弹窗显示5
+
+            //解决方案一：使用IIFE
+            funcArr = [];
+            for (var i = 0; i < 5; i++)
+            {
+                // 闭包形成了新的子作用域
+                (function (i)
+                {
+                    //
+                    funcArr.push(function ()
+                    {
+                        alert(i);
+                    })
+                })(i)
+            }
+            funcArr[2]();
+        </script>
+    </body>
+
+</html>

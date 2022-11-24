@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>数学运算符的优先级</title>
+    </head>
+
+    <body>
+        按下F12打开控制台
+        <script>
+            console.log(`数学运算符有4个： +、-、*、/、%`);
+            console.log(`+、-的优先级一样，在表达式中同时出现时，在左边的优先级高`);
+            console.log(`*、/、%的优先级一样，在表达式中同时出现时，在左边的优先级高`);
+            console.log(`*、/、%的优先级高于+、-`)
+            console.log(`10 * 2 / 4 % 3的结果是${ 10 * 2 / 4 % 3 }`);//2
+            console.log(`10 * 2 % 4 / 3的结果是${ 10 * 2 % 4 / 3 }`);//0
+            console.log(`10 / 2 * 4 % 3的结果是${ 10 / 2 * 4 % 3 }`);//2
+            console.log(`10 / 2 % 4 * 3的结果是${ 10 / 2 % 4 * 3 }`);//3
+            console.log(`10 % 2 / 4 * 3的结果是${ 10 % 2 / 4 * 3 }`);//0
+            console.log(`10 % 2 * 4 / 3的结果是${ 10 % 2 * 4 / 3 }`);//0
+        </script>
+    </body>
+
+</html>

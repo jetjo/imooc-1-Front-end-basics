@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>switch语句</title>
+    </head>
+
+    <body>
+        按下F12打开控制台
+        <script>
+            switch (3)
+            {
+                case 1: console.log(1);
+                case 2: console.log(2);
+                case 3: console.log(3);
+                // break;// 如果不写break，则后续的case即是不符合，也会执行！！！
+                case 4: console.log(4);
+                case 5: console.log(5);
+                default: console.log(`?`);
+            }
+        </script>
+    </body>
+
+</html>

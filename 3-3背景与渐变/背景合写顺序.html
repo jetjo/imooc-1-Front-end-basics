@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>背景合写顺序</title>
+        <style>
+            div.div1 {
+                /* 必须background-position/background-size */
+                background: gold url("avart.jpg") content-box content-box center/80% no-repeat;
+                background: center/80% gold url("avart.jpg") content-box content-box no-repeat;
+                background: center/80% gold content-box content-box no-repeat url("avart.jpg");
+                background: center/80% gold no-repeat content-box content-box url("avart.jpg");
+                background: padding-box content-box url("avart.jpg") center top/20% 20% gold no-repeat;
+                /* 顺序任意，但是只有最后一层bg才可以有颜色 */
+                background: padding-box padding-box url("avart.jpg") center top/20% 20% no-repeat, padding-box padding-box url("avart.jpg") center bottom/10% 20% gold no-repeat;
+            }
+
+            div.div1 {
+                /* 只写一个时，指的是width，height默认为auto */
+                /* background-size: auto 60px; */
+                /* background-repeat: no-repeat; */
+                width: 200px;
+                height: 200px;
+                /* box-sizing: border-box; */
+                border: 30px dashed #00fa;
+                padding: 20px;
+                /* 
+                background-clip: border-box;
+                background-clip: padding-box;
+                background-clip: content-box;
+
+                background-color: gold; */
+
+                /* opacity: .3; */
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="div1">
+
+        </div>
+    </body>
+
+</html>

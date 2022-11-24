@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>文本样式</title>
+        <style type="text/css">
+            /*样式添加*/
+            h1 {
+                color: #4b9b59;
+                font-size: 1.5rem;
+            }
+
+            a {
+                text-decoration: none;
+                color: #009;
+            }
+
+            ul {
+                padding: 0;
+                margin: 0;
+            }
+
+            li {
+                list-style: none;
+            }
+
+            i {
+                font-style: normal;
+            }
+
+            p {
+                margin: .5rem 0;
+            }
+
+            /*关键字*/
+            ul.nav {
+                font-size: 0;
+                margin-bottom: 1rem;
+            }
+
+            .nav li {
+                display: inline;
+                font-size: 1rem;
+            }
+
+            /*.nav li a {*/
+            /*  color: #009;  */
+            /*}*/
+            .nav li::after {
+                content: '/';
+            }
+
+            .nav li:last-child::after {
+                content: '';
+            }
+
+            /*设置⭐️*/
+            .s::before {
+                color: orange;
+                font-size: .75rem;
+            }
+
+            .s5::before {
+                content: '★★★★★';
+
+            }
+
+            .s4::before {
+                content: '★★★★';
+            }
+
+            /*评论区之间*/
+            /*.talks>li {*/
+            /*    border-top: 1px solid #000;*/
+            /*}*/
+            .talks>li::before {
+                content: '';
+                display: block;
+                height: 1px;
+                /*box-sizing: border-box;*/
+                /*border: none;*/
+                background-color: black;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <!-- 写出h内容 -->
+        <h1>大话西游之大圣娶亲的影评</h1>
+        <nav>
+            <ul class="nav">
+                <li><a href="">热门</a></li>
+                <li><a href="">最新</a></li>
+                <li><a href="">好友</a></li>
+            </ul>
+        </nav>
+        <main>
+            <ul class="talks">
+                <li>
+                    <p>
+                        <a href="">罗红霉素</a>
+                        <i class="s s5"> 2010-07-26</i>
+                    </p>
+                    <p>前排出售凉水、炒黄豆、恩希玛，欢迎品尝^^</p>
+                    <p>
+                        阅读:1314
+                        <a href="">有用</a>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <a href="">十七只猫和鱼</a>
+                        <i class="s s4"> 2009-06-01</i>
+                    </p>
+                    <p>北京每十个人就有一个是她父亲，大四合院啊</p>
+                    <p>
+                        阅读:515
+                        <a href="">有用</a>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <a href="">暖家男</a>
+                        <i class="s s4"> 2020-10-10</i>
+                    </p>
+                    <p>他是旗人，前门外皮条胡同，老拉家😄</p>
+                    <p>
+                        阅读:567
+                        <a href="">有用</a>
+                    </p>
+                </li>
+            </ul>
+        </main>
+    </body>
+
+</html>

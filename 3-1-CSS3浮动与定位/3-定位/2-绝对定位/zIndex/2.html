@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>1</title>
+        <style>
+            h1 {
+                text-align: center;
+                line-height: 100px;
+                font-weight: 700;
+                color: rgba(255, 217, 0, 0.677);
+            }
+
+            .box {
+                width: 200px;
+                height: 200px;
+            }
+
+            /* .box:first-child { */
+            .box:first-of-type {
+                background-color: gold;
+                z-index: 99999999;
+            }
+
+            /* .box:nth-child(2) { */
+            .box:nth-of-type(2) {
+                top: -100px;
+                left: 100px;
+                background-color: green;
+                z-index: 9
+            }
+
+            .pos-r {
+                position: relative;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="box pos-r"></div>
+        <div class="box pos-r"></div>
+    </body>
+
+</html>
