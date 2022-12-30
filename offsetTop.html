@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>offsetTop</title>
+        <style>
+            .indent2em {
+                text-indent: 2em;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <h3>offsetTop定义</h3>
+        <p>offsetTop的定义在w3c的cssom-view module中</p>
+        <p>offsetTop的编程接口定义如下： <br>
+            <img src="./CSSOM-View-Module/images/HtmlElement-Interface.png" alt="HtmlElement-Interface"> <br>
+            地址：<a
+                href="https://w3c.github.io/csswg-drafts/cssom-view/#extensions-to-the-htmlelement-interface">https://w3c.github.io/csswg-drafts/cssom-view/#extensions-to-the-htmlelement-interface</a>
+        </p>
+        <div>
+            <p>offsetTop指的是元素自身边框外侧和离自己最近的满足如下条件之一的祖先元素边框内侧的距离，变量类型是Long：</p>
+            <p class="indent2em">1、拥有定位属性</p>
+            <p class="indent2em">2、td、th、table,并且他们自身的position是static</p>
+
+            <br>
+            <p>在以下情况下，offsetTop返回null：</p>
+            <p class="indent2em">3、元素自身或者其中一个祖先元素的display属性是none</p>
+            <p class="indent2em">4、元素自身的定位是fixed（Firefox返回的是距body边框内侧的距离）</p>
+            <p class="indent2em">5、元素是html或者body</p>
+            <p>在除去以上5条的情况下，offsetTop指的是与body边框内侧的距离</p>
+        </div>
+    </body>
+
+</html>
