@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>绝对定位元素的宽和高属性</title>
+        <style>
+            .box {
+                position: relative;
+                border: 1px dashed red;
+                background-color: red;
+                background-clip: content-box;
+                padding: 50px;
+                width: 100px;
+                height: 100px;
+                margin: 0 auto;
+            }
+
+            .box-1-1 {
+                background-color: green;
+                position: absolute;
+                margin: 10px;
+                padding: 10px;
+                border: 1px dashed green;
+                /* 绝对定位的元素，宽高仍会被撑开，但是width有最大值。
+                绝对定位时，.box的padding-box区域变成了.box-1-1的margin-box的绘制区域。
+                所以在left为a的情况下，其margin-box的max-width为200px - a */
+                /* width: 50%;
+                height: 50%; */
+                top: 10px;
+                left: 10px;
+                left: 30px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="box">
+            <div class="box-1">
+                <div class="box-1-1">
+                    哈哈哈</div>
+                <!-- <div class="box-1-1">
+                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                    哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</div> -->
+            </div>
+        </div>
+    </body>
+
+</html>

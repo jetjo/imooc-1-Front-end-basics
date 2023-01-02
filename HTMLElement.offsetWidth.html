@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>offsetWidth</title>
+        <style>
+            .box {
+                margin: 0 auto;
+                border: 1px solid #ccc;
+                padding: 10px;
+                width: 200px;
+                height: 10px;
+
+                overflow: auto;
+                /* display: inline; */
+            }
+
+            .box::before {
+                content: 'sssssssssssss';
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div>
+            <img src="./html-element--dimensions-offset.png" alt="">
+        </div>
+        <div>
+            <p>只读的，返回测量宽度的整型值</p>
+            <p>定义在HTMLElement接口上</p>
+            <p>注：</p>
+            <p>1、不包含:before和:after的尺寸</p>
+            <p>2、当display设置为none时，返回0</p>
+        </div>
+        <!-- <div id="$box" class="box"></div> -->
+        <div id="$box" class="box">
+            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+            哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        </div>
+
+        <script>
+            const { offsetWidth, clientWidth, scrollWidth } = window.$box;
+            const { offsetHeight, clientHeight, scrollHeight } = window.$box;
+            console.log({ offsetWidth, clientWidth, scrollWidth });
+            console.log({ offsetHeight, clientHeight, scrollHeight });
+        </script>
+    </body>
+
+</html>

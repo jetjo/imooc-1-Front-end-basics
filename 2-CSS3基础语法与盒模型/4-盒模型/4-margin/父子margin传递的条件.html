@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>父子margin传递的条件</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+
+            .box {
+                margin: 20px auto;
+                border: 1px solid #ff9090;
+                padding: 5px;
+
+                /* 如果将padding-top和border-top的值设置为0，
+                会导致margin-top与子元素的margin-top直接接在一起，
+                则会发生塌陷，小的margin会塌陷到大的里面，子元素的margin-top
+                会处于父元素的外面 */
+                /* 一下两句，注释掉任何一条，都会发生塌陷,
+                当然是在没有形成BFC的前提下 */
+                border-top: none;
+                padding-top: 0;
+                /* 在position为relative的情形下，不会形成BFC，但是会使子元素的
+                offsetParent由body变为#box */
+
+                position: relative;
+
+                width: 200px;
+                height: 500px;
+            }
+
+            .content {
+                margin: 55px auto;
+                border: 1px solid #f0f090;
+                padding: 5px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div id="box" class="box">
+            <div id="content" class="content">
+                如果将padding-top和border-top的值设置为0，
+                会导致margin-top与子元素的margin-top直接接在一起，
+                则会发生塌陷，小的margin会塌陷到大的里面，子元素的margin-top
+                会处于父元素的外面
+            </div>
+        </div>
+    </body>
+
+</html>

@@ -13,15 +13,77 @@
                 padding: 0;
             }
 
+            .box {
+                width: 200px;
+                height: 200px;
+                margin: 0 auto;
+                background-color: #9090ff;
+            }
+
+            .box-1 {
+                background-color: red;
+            }
+
+            .box-1-1 {
+                background-color: green;
+                height: 100px;
+            }
+
+            .box {
+                position: relative;
+                margin-top: 10px;
+                border-top: 10px dashed #ccc;
+                padding-top: 10px;
+            }
+
+            .box-1 {
+                margin-top: 11px;
+                border-top: 11px dashed #ccc;
+                padding-top: 11px;
+                width: 50px;
+                height: 100px;
+            }
+
+            .box-1-1 {
+                margin-top: 12px;
+                border-top: 12px dashed #ccc;
+                padding-top: 12px;
+            }
+
+            /* 测试1 */
+            .box-1-1 {
+                position: relative;
+                top: 10px;
+            }
+
+            .box-1-1 {
+                /* 脱离了标准文档流，
+                所以width的100%是对应的.box盒子而不是.box-1；
+                因为.box的position是relative。.box成为了.box-1-1的包含盒子。
+                 */
+                position: absolute;
+                top: 13px;
+                width: 100%;
+                height: 50%;
+            }
+
         </style>
     </head>
 
     <body>
         <div class="box">
             <div class="box-1">
-                <div class="box-1-1"></div>
+                <div id="div11" class="box-1-1"></div>
             </div>
         </div>
+
+        <script>
+            setTimeout(() =>
+            {
+                const $div11 = document.getElementById('div11');
+                console.log($div11.offsetTop);
+            }, 2000);
+        </script>
     </body>
 
 </html>
