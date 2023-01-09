@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <ul>
+            <li>1、如果元素的position属性是static、relative、sticky，那么其包含块就是符合如下条件之一的离他最近的祖先元素的content-edge：
+                <ul>
+                    <li>1、块元素</li>
+                    <li>2、行内块元素</li>
+                    <li>3、list item</li>
+                    <li>4、形成BFC的元素</li>
+                    <li>5、块元素它自身？</li>
+                </ul>
+            </li>
+            <li>2、如果元素的position属性是absolute，那么其包含块就是离他最近的定位属性不是static的祖先元素的padding-edge</li>
+            <li>3、如果元素的position属性是fixed，或者元素是html，那么其包含块就是viewport（连续的媒体设备）或者page (分页的媒体设备)的padding-edge，即初始包含块</li>
+            <li>4、如果元素的position属性是absolute或者fixed，那么符合如下条件的距离最近的祖先元素的padding-edge将成为包含块：
+                <ul>
+                    <li>1、transform或perspective不是none</li>
+                    <li>2、will-change的值是transform或perspective</li>
+                    <li>3、filter的值不是none或者will-change的值是filter</li>
+                    <li>4、contain的值是paint</li>
+                    <li>5、backdrop-filter的值不是none</li>
+                </ul>
+            </li>
+        </ul>
+
+        <p> 可见对于元素自身而言，判断其包含块完全取决于其position属性</p>
+    </body>
+
+</html>
