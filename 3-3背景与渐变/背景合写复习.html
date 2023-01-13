@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>背景合写复习</title>
+        <style>
+            .bmg {
+                width: 500px;
+                height: 500px;
+                margin: 0 auto;
+                border: 1px solid gold;
+
+                /* 依次是 background-origin、background-clip、background-image、background-position/background-size、background-repeat、background-color */
+                background: padding-box border-box url(./avart.jpg) center 50%/contain no-repeat green;
+                background: padding-box border-box url(./avart.jpg) center 50%/contain no-repeat, center/cover url(../11d78e448da440260a76977044b26087.jpg) #0f03;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="bmg"></div>
+    </body>
+
+</html>

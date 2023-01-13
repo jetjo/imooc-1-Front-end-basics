@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>背景复习</title>
+        <style>
+            .bmg {
+                /* * { */
+
+                width: 500px;
+                height: 500px;
+                border: 1px solid gold;
+                margin: 0 auto;
+                background-image: url(./avart.jpg);
+
+                background-repeat: no-repeat;
+            }
+
+            .bmg-pos {
+                /* 图片左侧距离padding-left-edge的距离是30px */
+                background-position: 30px;
+                /* 图片左侧距离padding-left-edge的距离是：(padding-box-width - image-width)*30% */
+                background-position: 30%;
+                /* 顶部对齐，左右居中 */
+                background-position: top;
+                /* 左侧对齐，垂直居中 */
+                background-position: left;
+                /* position-x,position-y */
+                background-position: 30px 30%;
+                /* 默认值~~~~~~~~~~~~~~~~~~~~~~~ */
+                background-position: left top;
+                /* 都是关键字时，可以颠倒 */
+                background-position: top left;
+                /* 不可以颠倒 */
+                background-position: top 30%;
+                /* 不可以颠倒 */
+                background-position: 30px left;
+                background-position: left 30%;
+                background-position: 30px top;
+                /* 50%和center是一个意思 */
+                background-position: 50% center;
+            }
+
+            .bmg-small {
+                width: 50px;
+                height: 50px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="bmg bmg-pos"></div>
+        <div class="bmg bmg-small bmg-pos"></div>
+    </body>
+
+</html>

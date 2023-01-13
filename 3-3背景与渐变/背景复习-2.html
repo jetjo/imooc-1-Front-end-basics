@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>背景复习</title>
+        <style>
+            .bmg {
+                /* * { */
+
+                width: 500px;
+                height: 100px;
+                border: 1px solid gold;
+                margin: 0 auto;
+                background-image: url(./avart.jpg);
+
+                background-repeat: no-repeat;
+
+                background-position: 50% center;
+            }
+
+            .bmg-small {
+                width: 50px;
+                height: 10px;
+            }
+
+            .bmg-size {
+                /* 默认值是既不缩小也不放大 */
+                /* 图片的一个维度正好占满容器的对应维度，另一个维度不足以沾满容器的对应的维度 */
+                background-size: contain;
+                /* 图片的一个维度正好占满容器的对应维度，另一个维度超出了容器对应的维度 */
+                background-size: cover;
+                /* 写一个值时，指的是宽，高等比缩放 */
+                background-size: 50%;
+                /* 写两个时，先是宽后是高 */
+                background-size: 100% 100%;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="bmg bmg-size"></div>
+        <div class="bmg bmg-small bmg-size"></div>
+    </body>
+
+</html>
