@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>offsetParent</title>
+    </head>
+
+    <body>
+        <ol>
+            <li>position 不是static的</li>
+            <li>td、th、table in case the element itself is static positioned. <br>
+                经测试，意思是当元素position是static时，td、th、table元素可以成为其offsetParent</li>
+            <li>display是none，或者其祖先的display为none时，返回null</li>
+            <li>position是fixed时，返回null，Firefox浏览器返回body元素</li>
+            <li>如果元素是body或者html，返回null</li>
+        </ol>
+    </body>
+
+</html>

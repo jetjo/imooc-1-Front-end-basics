@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>offsetParent</title>
+        <style>
+            .offset-parent {
+                position: absolute;
+                position: fixed;
+                position: relative;
+                position: static;
+                position: sticky;
+                width: 500px;
+                height: 200px;
+                margin: 0 auto;
+                border: 1px solid #000;
+            }
+
+            #box-item {
+                width: 50px;
+                height: 50px;
+                background-color: #ff0;
+                margin: 0 auto;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="offset-parent">
+            <div>
+                <div id="box-item"></div>
+            </div>
+        </div>
+
+        <script>
+            console.log(window["box-item"].offsetParent, 'window["box-item"].offsetParent');
+        </script>
+    </body>
+
+</html>
