@@ -12,13 +12,14 @@
                 color: white;
                 font-weight: 700;
                 /* line-height: 2; */
+                width: 1000px;
             }
 
             body {
                 margin: 10px;
                 overflow: hidden;
                 padding: 10px;
-                background: black;
+                /* background: black; */
                 background-clip: content-box;
                 /* text-align: center; */
             }
@@ -63,41 +64,70 @@
             }
 
             body>div>a {
-                width: 500px;
-                height: 50px;
+                /* width: 500px;
+                height: 50px; */
+                /*NOTE: 临时测试行内块的特性 */
+                /* display: inline-block; */
                 background-color: #0707;
-                margin: 100px 10px;
-                padding: 22px 10px;
+                /*NOTE: 水平方向的正得负的外边距是有效的，与内边距相比，不会影响行内元素的背景色区域大小 */
+                margin: 300px -38px;
+                /*NOTE: 负的内边距是非法值，水平方向正的内边距也是有效的 */
+                padding: 220px -24px;
+                margin: 300px 10px;
+                padding: 220px 10px;
+            }
+            body>div {
+                /* overflow: hidden; */
+                border: 1px solid #000;
             }
 
-            body>div>a::after {
+            /* body>div>a::after {
                 content: '这是a';
                 margin: 100px 10px;
                 padding: 220px 10px;
                 color: red;
-            }
+            } */
 
         </style>
     </head>
 
     <body>
-        <span>1、能并排显示</span><span>2、不能设置宽高</span>
+        <!-- <span>1、能并排显示</span><span>2、不能设置宽高</span>
         <span>3、不设置宽时自动收缩</span>
         <span>4、垂直方向margin无效</span><br />
-        <span>5、垂直方向padding塌陷</span>
-        <div style="height: 50px; line-height: 50px; background-color: coral; text-align: center;">4、常见的块级元素有：
+        <span>//NOTE: 5、垂直方向padding塌陷</span>
+        <div style="height: 50px; line-height: 50px; background-color: coral; text-align: center;">4、常见的行内元素有：
             <span>a</span>、
             <span>span</span>、
             <span>em</span>、
             <span>b</span>、
             <span>u</span>、
             <span>i</span>
-        </div>
+        </div> -->
+
+        
 
         <div>
             <a href="">我的下边距和padding-bottom都位于body内容区的外部，与body的padding-bottom、border、margin重叠在一起</a>
-            <a href=""></a>
+            <a href="">//NOTE: 行内元素上设置的内外边距对父容器的尺寸和位置都没有影响，唯一有影响的是行内元素的背景色。</a>
         </div>
+
+        <figure style="background-color: #eee; color: #333">
+            <pre>
+                        1、能并排显示
+                        2、不能设置宽高
+                        3、不设置宽时自动收缩
+                        4、垂直方向margin无效
+                        //NOTE: 5、垂直方向padding塌陷
+                        4、常见的行内元素有：
+                            a
+                            span
+                            em
+                            b
+                            u
+                            i
+                    </pre>
+        </figure>
 
         <div style="position: fixed; bottom: 0; right: 0; padding: 20px;">
 
