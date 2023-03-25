@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>line-height及其继承特性</title>
+    <style>
+
+        :root {
+            /* Mac 上Chrome浏览器限制最小字号是12px， 因此实际字号不会是10px，而是12px */
+            /* font-size: 10px; */
+            font-size: 15px;
+        }
+
+        .text-box {
+            /* 自身字体尺寸的3倍 */
+            line-height: 3em;
+            /* 自身字体尺寸的3倍 */
+            /* line-height: 300%; */
+            /* 自身字体尺寸的2倍 */
+            /* line-height: 2; */
+        }
+
+        /* 下面是测试不同单位的line-height值在继承时的特性，单独测试不同单位的含义时应该注释掉以下样式 */
+
+        :root {
+            /* NOTE: 后代元素继承到的是声明值，后代会用自己的字号乘以这个声明值算出自己的行高 */
+            line-height: 2;
+            /* 和em等带单位的值一样，后代得到的是已经计算好的行高值，不用根据自己的字号计算了 */
+            line-height: 300%;
+            line-height: .5em;
+        }
+
+        .text-box {
+            line-height: inherit;
+        }
+
+        #text-box1 {
+            font-size: 1rem;
+        }
+
+        #text-box2 {
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <p id="text-box1" class="text-box">一段文字</p>
+    <p id="text-box2" class="text-box">另一段文字</p>
+    <script>
+        function displayFontInfo(id) {
+            const p1 = document.getElementById(id);
+            const style = window.getComputedStyle(p1);
+            p1.innerHTML += `，行高： ${style.lineHeight}，字号： ${style.fontSize}。`;
+        }
+        window.addEventListener("load", () => {
+            displayFontInfo('text-box1');
+            displayFontInfo('text-box2');
+        });
+    </script>
+</body>
+</html>

@@ -54,14 +54,19 @@
             }
 
             .para3 {
-                /* serif字体库里既有英文也有中文，所以中文也是使用serif字体展示 */
+                /* serif字体库里既有英文也有中文，所以中文也是使用serif字体展示 ，// NOTE: serif没有让PingFang SC生效*/
                 font-family: serif, "Times New Roman", "微软雅黑", "PingFang SC";
                 font-family: serif, "Times New Roman", "Microsoft Yahei", "PingFang SC";
             }
 
             .para4 {
+                /*NOTE: serif, sans-serif, monospace等并不是具体指某一个字体，而是一类字体的名称，叫做通用字体族（泛型）
+                serif: 有衬线的字体，更像是手写的，更漂亮，中文的衬线字体往往是宋体用的多。
+                sans-serif: 无衬线字体，中文往往是黑体。
+                monospace：等宽字体 */
                 font-family: sans-serif, serif, "Times New Roman", "微软雅黑", "PingFang SC";
                 font-family: sans-serif, serif, "Times New Roman", "Microsoft Yahei", "PingFang SC";
+                font-family: monospace, sans-serif, serif, "Times New Roman", "Microsoft Yahei", "PingFang SC";
             }
 
             .para5 {
@@ -79,6 +84,8 @@
 
             .para6 {
                 font-family: "站酷酷黑 子集", "魏碑-简", "PingFang SC";
+                /*NOTE:  对于"站酷酷黑 子集"字库中没有的字体并未生效，因为生效的字库"魏碑-简"没有这个字重 */
+                font-weight: 700;
             }
 
             .para7 {
