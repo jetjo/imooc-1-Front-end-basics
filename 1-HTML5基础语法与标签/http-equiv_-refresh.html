@@ -1,0 +1,31 @@
+<!-- http-equiv_-refresh.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html头部meta中指定refresh</title>
+</head>
+<body>
+    <input type="text" text="" id="counter">
+    <script>
+        window.addEventListener("load", () => {
+            let counter = document.getElementById('counter')
+            let i = 10;
+            let h = setInterval(() => {
+                if(i < 1) {
+                    clearInterval(h);
+                    counter = null;
+                    const meta = document.createElement("meta");
+                    meta.setAttribute("http-equiv", "refresh");
+                    meta.setAttribute("content", "0;url=//www.google.com");
+                    document.head.appendChild(meta);
+                    return;
+                }
+                counter.setAttribute("value", i--);
+            }, 1000);
+        })
+    </script>
+</body>
+</html>
