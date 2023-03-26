@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>line-height 默认继承</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            font-size: 20px;
+            /*NOTE: 此时span元素的绿色，在换行的情况下，两行的绿色并没有接起来，可见span的绿色背景被不是其行高的区域 */
+            line-height: 2em;
+            /*NOTE: 此时，如果文字换行了，两行文字恰好不重叠，但是如果span有背景，下一行的背景会遮挡住上一行文字一部分。
+            可见字体书写区域的高度会比字体的尺寸高一点，高出来的一点叫铅空，分布于字体的上下两侧，各占一半，叫做半铅空？？？ */
+            line-height: 1em;
+            /*NOTE: 换一种字体后，书写区域的尺寸可能会变大或变小一点 */
+            line-height: 1.42em;
+            /*NOTE: 本来设置line-height设置1.42em时，两行的绿色恰好不重叠，但是当设置字体为monospace时，两行的颜色里的更远了，可见字体书写区域的高度确实和字体有关。
+            monospace字体比较扁 */
+            font-family: monospace;
+
+            line-height: 100px;
+        }
+
+        body {
+            /* background-color: #6006; */
+            border: 1px solid #000;
+            overflow: hidden;
+            height: auto;
+            width: 800px;
+        }
+
+        span {
+            background-color: #6f6;
+            /* 虽然从选择器权重角度考虑，span的生效的行高是50px，确实span元素的样式计算值的行高也是50px，
+            但是因为父容器body从根元素处继承的行高值100px更大，所以span实际渲染的行高是100px。
+            可见css最终生效的值和实际渲染的效果都是两码事儿。。。 */
+            line-height: 50px;
+        }
+
+        span#span-block {
+            display: inline-block; 
+            background-color: red;
+            /* vertical-align只对行内元素及行内块元素有效，因为块元素独占一行，所以无所谓什么和别的元素在一行如何对齐这一说。
+            并且对于行内元素之间来说，也只有在大家的行高不一致时，才有效果 */
+            vertical-align: top;
+            /* 一行的渲染行高由这一行所有元素及父元素的的行高的最大值决定，但是这一行内每个元素在行高中的位置，及这些元素在纵向上的相对位置取决于vertical-align。
+            默认情况下，大家的行高的基线是对齐的，所以文字对齐了，当改变vertical-align值时,不同元素的基线不对齐了，而文字又在行高中居中，所以文字也不齐了。。。 */
+            line-height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <span id="line-height"></span>
+    <span style="line-height: 70px; background-color: yellow;">
+    [这是另一个span] 行高是70px，当一个块元素内部有多个span标签时，
+    当两个span标签处于同一行时，这一行的行高由这一行的所有span标签的行高及body的行高值中最大的那一个值决定。
+    </span>
+    <span id="span-block">
+    [这是一个行内块span...]
+    </span>
+    <span style="vertical-align: bottom;">
+    当这一行只有一个span时，其行高由body行高和这个span行高值中最大的行高决定，其他行中的span的行高对此没有影响。
+    </span>
+    <script>
+        window.addEventListener("load", () => {
+            const lineHeightBox = document.getElementById("line-height");
+            lineHeightBox.innerHTML = `html、body、span元素的行高分别是：
+            ${window.getComputedStyle(document.documentElement).lineHeight}、
+            ${ window.getComputedStyle(document.body).lineHeight}、
+            ${window.getComputedStyle(lineHeightBox).lineHeight}；body的高是：${ window.getComputedStyle(document.body).height }（黑色边框是body）`;
+        });
+    </script>
+</body>
+</html>

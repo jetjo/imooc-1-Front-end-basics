@@ -7,6 +7,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>定位,主要学习sticky定位</title>
         <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+
             body {
                 /* overflow: hidden; */
                 /* display: inline; */
@@ -54,6 +59,7 @@
     </head>
 
     <body style="height: 200vh;width: 200vw;">
+        body没有内外边距，背景是白色，宽高都是视口的两倍，所以整个页面白色区域全是body的内容区
         <a href="#pos1">跳转到锚点1</a>
         <a id="link" href="#pos1">跳转到锚点1</a>
         <h2 id="pos1" class="pos1">锚点1</h2>
