@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>静态定位的包含块</title>
+    <link rel="stylesheet" href="./content-style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            position: absolute;
+            top: 0;
+            width: 200px;
+        }
+
+        .box__inner {
+            width: 100px;
+        }
+
+        .content {
+            position: fixed;
+            top: 500px;
+            width: 50%;
+            height: 100px;
+        }
+
+        .inner-2 {
+            display: inline-block;
+            width: 150px;
+        }
+
+        .inner-3 {
+            display: flex;
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box__inner inner-1">
+            <div class="content content-1">111111111</div>
+        </div>
+
+        <div style="margin-top: 20px;">
+                    <div class="box__inner inner-2">
+                        <div class="content content-2">22222222</div>
+                    </div>
+        </div>
+
+        <div style="margin-top: 20px;">
+                    <div class="box__inner inner-3">
+                        <div class="content content-3">33333333333</div>
+                    </div>
+        </div>
+    </div>
+</body>
+</html>

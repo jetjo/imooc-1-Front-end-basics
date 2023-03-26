@@ -1,0 +1,37 @@
+
+.content {
+    overflow: hidden;
+}
+
+
+.content-1 {
+    background-color: #e90808;
+}
+.content-2 {
+    background-color: #08e962;
+}
+.content-3 {
+    background-color: #086de9;
+}
+.content-4 {
+    background-color: #e9de08;
+}
+
+
+.box__inner {
+    border: 1px solid #000;
+}
+
+
+.inner-1 {
+    border-color: #e90808;
+}
+.inner-2 {
+    border-color: #08e962;
+}
+.inner-3 {
+    border-color: #086de9;
+}
+.inner-4 {
+    border-color: #e9de08;
+}

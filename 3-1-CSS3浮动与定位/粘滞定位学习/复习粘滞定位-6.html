@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复习粘滞定位</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            overflow: visible;
+            height: 5000vh;
+            margin-top: 5000vh;
+            border: 1px dashed #000;
+        }
+
+
+        body {
+            /* visible是overflow的初始值 */
+            overflow: visible;
+            /* auto是height属性的初始值 */
+            /* 结合上一句overflow设置，使得body不再是个滚动块 */
+            height: auto;
+            border: 1px solid #000;
+            margin-top: 100px;
+            margin-bottom: 300vh;
+        }
+
+        p {
+            border: 1px solid #0606;
+        }
+
+        p.p1 {
+            height: 535px;
+        }
+
+        p.p2 {
+            position: sticky;
+            top: 80px;
+            border-color: red;
+            height: 80px;
+            background-color: #ccc;
+        }
+
+        p.fixed {
+            position: fixed;
+            top: 160px;
+        }
+
+    </style>
+</head>
+<body>
+    <p class="p1">p1是生生世世</p>
+    <div style="height: 300px; background-color: pink;">
+        <p class="p2">p2是生生世世, 粘滞的p</p>
+        <p>p3是生生世世,注意我上面的区域，即使p2不在了，仍然为他留着。。。，相对定位的特性，p2并没有脱离文档流</p>
+    </div>
+    <p style="height: 200vw;">p4是生生世世</p>
+
+    <p class="fixed">
+        我是固定定位的p, 可见固定定位是相对于初始包含块的 <br>
+        本页初始包含块是粘滞元素的滚动块，只有这种情况下，粘滞元素粘滞时才表现的跟固定定位一样。<br>
+        初始包含块无法定制样式，所以他的大小就是视口的大小。
+    </p>
+</body>
+</html>

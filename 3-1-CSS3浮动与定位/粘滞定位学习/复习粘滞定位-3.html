@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复习粘滞定位</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            overflow: hidden;
+        }
+
+
+        body {
+            overflow: auto;
+            height: calc(100vw - 102px);
+            border: 1px solid #000;
+            margin-top: 100px;
+        }
+
+        p {
+            border: 1px solid #0606;
+        }
+
+        p.p1 {
+            height: 235px;
+        }
+
+        p.p2 {
+            position: sticky;
+            /* 和《复习粘滞定位-2.html》文件不同，p2的滚动块不再是body了，而是其包含块div,
+            但是由于滚动块div没有自己的高度，所以她不会滚动，那么粘滞元素p2也不会表现出粘滞的特性。
+            当向上滚动鼠标使得body内容滚动时，p2也随着其包含块一直在滚动。。。，*/
+            /* NOTE: 测得，对于粘滞元素的兄弟元素而言，粘滞元素表现的跟相对定位元素一样。 ..*/
+            top: 40px;
+            border-color: red;
+            height: 80px;
+            background-color: #ccc;
+            /* NOTE: 通过这句还测得，定位的优先级高于负外边距对位置影响的优先级 */
+            /* NOTE: 当取消对这一句的注释后，由于p2的高也是80px，负外边距正好像上拉了80px，所以p2在正常布局流中的空间恰好被拉到外面，p2的相邻下一个兄弟元素恰好处于容器顶部。 */
+            /* margin-top: -80px; */
+        }
+
+        div.p2-box {
+            overflow: auto;
+            border: 1px solid gold;
+        }
+
+    </style>
+</head>
+<body>
+    <p class="p1">p1是生生世世</p>
+    <div class="p2-box">
+        <p class="p2">p2是生生世世, 粘滞的p</p>
+        <p>p3是生生世世----------------------------</p>
+        <p>p3是生生世世</p>
+        <p>p3是生生世世</p>
+        <p>p3是生生世世</p>
+        <p>p3是生生世世</p>
+        <p>p3是生生世世</p>
+        <p>p3是生生世世</p>
+        <p>p3是生生世世</p>
+    </div>
+    <p style="height: 200vw;">p4是生生世世</p>
+</body>
+</html>

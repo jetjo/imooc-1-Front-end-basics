@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复习粘滞定位</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            overflow: hidden;
+        }
+
+
+        body {
+            overflow: auto;
+            height: calc(100vw - 102px);
+            border: 1px solid #000;
+            margin-top: 100px;
+        }
+
+        p {
+            border: 1px solid #0606;
+        }
+
+        p.p1 {
+            height: 235px;
+        }
+
+        p.p2 {
+            position: sticky;
+            /* 和《复习粘滞定位-1.html》文件中一样，p2的滚动块依然是body，
+            但是他的包含块不是body了，而是包裹在其外层的div。
+            因为是这个div没有自己的高度，并且overflow未设置为滚动，所以不是子元素p2的滚动块。
+            但滚动body内容时，在div底部与p2的底部距离大于0 之前，表现和 《复习粘滞定位-1.html》文件一致。
+            但是当div底部与子元素p2底部距离为0 时，再继续向上滚动body的内容，p2就不再不动了，会恢复继续跟着其包含块div向上滚动。。。*/
+            top: -1px;
+            border-color: red;
+            height: 80px;
+            background-color: #ccc;
+        }
+
+    </style>
+</head>
+<body>
+    <p class="p1">p1是生生世世</p>
+    <div>
+        <p class="p2">p2是生生世世, 粘滞的p</p>
+        <p>p3是生生世世</p>
+        <p>p3是生生世世</p>
+        <p>p3是生生世世</p>
+        <p>p3是生生世世</p>
+        <p>p3是生生世世</p>
+        <p>p3是生生世世</p>
+        <p>p3是生生世世</p>
+        <p>p3是生生世世</p>
+    </div>
+    <p style="height: 200vw;">p4是生生世世</p>
+</body>
+</html>
