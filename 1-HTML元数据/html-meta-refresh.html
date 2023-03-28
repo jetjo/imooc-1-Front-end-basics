@@ -6,10 +6,15 @@
     <meta name="referrer" content="no-referrer">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学习在页面元数据中设置请求头Referrer</title>
+    <title>在页面&lt;head>中设置请求头Referrer</title>
 </head>
 <body>
-    <a href="//www.google.com">打开控制台查看请求头, 打开“网络”面板，开启日志记录，选中全部请求查看</a>
+    <p>
+        <a href="//www.google.com">打开Google首页（这个链接大概首先被重定向到https协议）</a>
+    </p>
+    <p>
+        <a href="https://www.google.com">打开Google首页（这个链接是https协议，大概不会被重定向了）</a>
+    </p>
     <div>
         <img src="./html头部meta中指定no-referrer.png" alt="" width="45%">
         <img src="./html头部meta中未指定no-referrer.png" alt="" width="45%">
