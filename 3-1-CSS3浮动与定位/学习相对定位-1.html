@@ -27,14 +27,15 @@
 
             section {
                 /* 原位置属性 */
-                width: 50%;
+                width: 70%;
                 margin: 60px auto;
                 /* 镜像位置 */
                 position: relative;
                 top: 100px;
 
                 /* 与position无关，有效，镜像有效 */
-                overflow: hidden;
+                /* overflow: hidden; */
+                overflow: visible;
 
                 /* 镜像属性 */
                 background-color: chocolate;
@@ -53,7 +54,7 @@
             div:nth-of-type(1),
             div:nth-of-type(2) {
                 position: relative;
-                left: 35px;
+                /* left: 35px; */
             }
 
             div:nth-of-type(1) {
@@ -69,6 +70,7 @@
             }
 
             div:nth-of-type(3) {
+                width: auto;
                 background-color: #0f0;
             }
 
@@ -79,7 +81,7 @@
         <section>
             <div>1</div>
             <div>2</div>
-            <div>3</div>
+            <div>前面两个兄弟盒子（1、2）虽然通过定位偏移到别的地方了，但是是相对定位，未脱离默认文档流，所以前面两个兄弟盒子所占据的空间还得留着。</div>
         </section>
     </body>
 
