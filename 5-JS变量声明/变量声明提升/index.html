@@ -21,7 +21,18 @@
 
             // NOTE: let、const不存在变量提升特性
             // console.log(c);// Uncaught ReferenceError: Cannot access 'c' before initialization
-            let c = '我是变量c'
+            let c = '我是变量c'; // NOTE: 最后一行不加分号，标签识别异常
+        </script>
+
+        <script>
+            // 函数也存在声明提升，并且与var不同，函数体也会提升
+            console.log(commonFunc);
+            commonFunc();
+
+            function commonFunc()
+            {
+                console.log('hello world!');
+            }
         </script>
     </body>
 
