@@ -15,7 +15,11 @@
             console.log({
                 good_use, bad_use,
                 good_use_type: typeof good_use,
-                bad_use_type: typeof bad_use
+                bad_use_type: typeof bad_use,
+                good_use__isString: good_use instanceof String,
+                bad_use__isString: bad_use instanceof String
+                // good_use__isString: good_use instanceof string, //string is not defined
+                // bad_use__isString: bad_use instanceof string
             });
         </script>
         <script>

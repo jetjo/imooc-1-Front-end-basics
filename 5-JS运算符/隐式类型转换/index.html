@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>隐式类型转换</title>
+    </head>
+
+    <body>
+        <script>
+            // ➕：有两种功能
+            // 一种是表示两个数字相加的和
+            // 一种是连字符，连接两个字符串
+
+            // 当加号两侧变量的类型都不是字符串时，表示两个数的和
+            // 这时候，➕两侧的变量如果不是数字，会隐式地调用Number函数转化为数字后相加
+            console.log(true + true);
+            console.log(true + null);
+            console.log(true + undefined);
+
+            // 当加号两个的变量其中有一个是字符串时，表示字符串的拼接
+            // 这时候，➕两侧的变量如果不是字符串，会隐式地调用 String函数（调用变量自身或或者原型链上最近的toString方法）转化为字符串后拼接在一起
+            console.log(1 + '9');
+
+            // +++++++++++++++++++++++测试后，得知，如果一侧是引用类型(数字\布尔的包装器除外)，也会是连字符功能
+            console.log(new Number() + new Number(9));
+            console.log(new Boolean() + new Boolean(true));
+
+
+            console.log('==================加号一侧是非（数字、布尔、字符串）的引用类型');
+            console.log(true + [9]);
+            console.log(true + []);
+            console.log([] + []);
+            console.log(11 + [9]);
+            console.log(true + {});
+
+        </script>
+
+        <script>
+            // 除了➕之外的其他数学运算符，都只有数学运算这一种功能，因此如果变量不是数字，会隐式转换为数字
+            console.log('==================其他数学运算符');
+            console.log(1 - '9');
+            console.log('==================减号一侧是非（数字、布尔、字符串）的引用类型');
+            console.log(true - [9]);
+            console.log(true - []);
+            console.log([] - []);
+            console.log(11 - [9]);
+            console.log(true - {});
+        </script>
+
+        <script>
+            // 所有关系运算符都是比较数字的，所以两侧有一个不是数字时，会隐式转换为数字
+            console.log('==================所有关系运算符');
+            console.log(1 > '9');
+            console.log('==================大于一侧是非（数字、布尔、字符串）的引用类型');
+            console.log(true > [9]);
+            console.log(true > []);
+            console.log([] > []);
+            console.log(11 > [9]);
+            console.log(true > {});
+        </script>
+
+        <script>
+            // 所有逻辑运算符都是只进行逻辑判断，所以一侧不是布尔时，会隐式转换为布尔类型
+            console.log('==================所有逻辑运算符');
+            console.log(!'9');
+            console.log('==================非运算符右侧是非（数字、布尔、字符串）的引用类型');
+            console.log(![9]);
+            console.log(![]);
+            console.log(!{});
+        </script>
+    </body>
+
+</html>

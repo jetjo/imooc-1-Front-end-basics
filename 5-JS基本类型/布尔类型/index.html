@@ -16,7 +16,9 @@
             console.log({
                 good_use, bad_use,
                 good_use_type: typeof good_use,
-                bad_use_type: typeof bad_use
+                bad_use_type: typeof bad_use,
+                good_use__isBoolean: good_use instanceof Boolean,
+                bad_use__isBoolean: bad_use instanceof Boolean
             });
         </script>
         <script>
