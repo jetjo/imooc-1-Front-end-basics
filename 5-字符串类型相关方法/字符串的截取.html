@@ -26,6 +26,30 @@
             console.log(str.slice(2, -5), str);
             console.log(str.slice(-7, 4), str);
         </script>
+
+        <script>
+            // 测试默认参数值
+            console.log('============================测试默认参数值');
+            var str = '好好学习，天天向上';
+            console.log(str.substring(2), str);
+            console.log(str.substring(4), str);
+            console.log(str.slice(2), str);
+            console.log(str.slice(4), str);
+            console.log(str.slice(-7), str);
+            console.log(str.slice(-5), str);
+        </script>
+
+        <script>
+            // substr方法已被废弃，尽管浏览器为了兼容旧代码还未移除她，但是在非浏览器平台已经不可用了！！！！
+            // substr方法不同，他的第二个参数表示截取的长度， 也不会改变原字符串
+            console.log('============================测试substr默认参数值');
+            var str = '好好学习，天天向上';
+            console.log(str.slice(2), str);
+            console.log(str.slice(4), str);
+            console.log(str.slice(-7), str);
+            console.log(str.slice(-5), str);
+        </script>
+
     </body>
 
 </html>
