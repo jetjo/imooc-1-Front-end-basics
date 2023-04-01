@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>字符串类型</title>
+    </head>
+
+    <body>
+        <script>
+            const good_use = String();
+            const bad_use = new String();
+            console.log({
+                good_use, bad_use,
+                good_use_type: typeof good_use,
+                bad_use_type: typeof bad_use
+            });
+        </script>
+        <script>
+            console.log('============== 字符串');
+            console.log(String());
+            console.log(String(null));
+            console.log(String(undefined));
+            console.log(String(false));
+
+            console.log('============== 字符串');
+            console.log(String(NaN));
+            console.log(String(Infinity));
+            console.log(String(-Infinity));
+
+            console.log('============== 字符串');
+            console.log(String(true));
+
+            console.log('============== 字符串');
+            console.log(String([]));
+            console.log(String({}));
+            console.log(String([1, 2, 3]));
+
+            console.log('============== 字符串');
+            console.log(String(.1));
+            console.log(String(-1e2));
+
+            console.log('============== 字符串');
+            console.log(String(0b11));
+            console.log(String(011));
+            console.log(String(0x11));
+        </script>
+        <script>
+            // String(a) 相当于 a.toString
+            // 任何操作或运算中如果发生了其他类型到字符串的隐式转换，本质上是调用了这个变量的toString，这个toString可以被重写
+            console.log((1).toString())
+            console.log(String(6))
+            console.log(NaN.toString());
+            console.log(Infinity.toString());
+            console.log(-Infinity.toString());
+            console.log((-Infinity).toString());
+            console.log(true.toString());
+            console.log(false.toString());
+            console.log(null.toString());
+            console.log(undefined.toString());
+        </script>
+    </body>
+
+</html>

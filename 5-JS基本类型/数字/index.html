@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>数字类型</title>
+    </head>
+
+    <body>
+        <script>
+            const good_use = Number();
+            const bad_use = new Number();
+            console.log({
+                good_use, bad_use,
+                good_use_type: typeof good_use,
+                bad_use_type: typeof bad_use
+            });
+        </script>
+
+        <script>
+            // 数字及运算的精度
+            // js中只有一种数字类型，即双精度的number
+            // 数字类型在内存中的存储遵循IEE754规范
+            // 64位内存中，最高位代表正负，接下来的11位代表指数n的编码值（n + 1023）,最后的52位是基数b的小数部分（b - 1）
+            // 2的n次方 * b = number
+            // 小数部分转换为二进制是乘2取整，直到小数部分变为0，但是有些小数无论乘多少次2都不能变为0（比如0.3）,但是储存转换结果的内存位数是固定的52位，所以十进制转到二进制存储时可能出现精度偏差。
+            // 再者两个数相加减时，如果两个数的指数不一致，还需要将指数位先对齐（比如一个数a，在内存中的存储形式是：2的10次方 * (0b00000...最低位是1)，然后另一个数b：2的11次方 * （...）; 那么这两个数相加前，需要先将a的指数乘以2，相应的a的基数即52位小数部分就应该除以2即右移一位，这将导致a的基数的最后一位1丢失，而导致计算出现误差。。。）
+            console.log(.1 + .2 === .3);
+            console.log(.2 + .1 === .3);
+            // console.log(.2 + .1 === .1 + .2);// 这当然是true，就两个数。。。
+            console.log(.3 + .2 + .1 === .1 + .2 + .3);
+        </script>
+
+        <script>
+            console.log('==============');
+
+            console.log(Number('0'));
+            console.log(Number());
+            console.log(Number(''));
+            console.log(Number('  '));
+            console.log(Number(false));
+            console.log(Number(null));
+
+            console.log('==============');
+
+            console.log(Number(undefined));
+
+            console.log('==============');
+
+            console.log(Number('1'));
+            console.log(Number(true));
+
+            console.log('==============');
+
+            console.log(Number('NaN'));
+            console.log(Number('Infinity'));
+            console.log(Number('-Infinity'));
+
+            console.log('==============');
+
+            console.log(Number('.1'));
+            console.log(Number('.1.1'));
+            console.log(Number('6e2'));
+            console.log(Number('-6e2'));
+            console.log(Number('-6e2元'));
+            console.log(Number('0b11'));
+            console.log(Number('0xff'));
+
+            // 总结：只要是合法的数字字面量（的字符串形式），都能正确转换
+            console.log('==============');
+
+            console.log(Number([]), '==============???');
+            console.log(Number({}));
+
+            console.log(Number([1]));
+            console.log(Number([0]));
+            console.log(Number([99]));
+            console.log(Number(['99']));
+            console.log(Number(['99元']));
+            console.log(Number([1, 1]));
+            console.log(Number([0, 0]));
+
+            // 总结： 如果是数组，并且数组中只有一个元素，那么会返回Number(第一个元素)
+            console.log('==============');
+        </script>
+        <script>
+            console.log((6).toString());
+            console.log((6).toString(2));
+            // console.log(6.toString());
+        </script>
+
+        <script>
+            console.log('============== 学习parseInt');
+            console.log(parseInt());
+            console.log(parseInt(''));
+            console.log(parseInt(' '));
+            console.log(parseInt(false));
+            console.log(parseInt(null));
+
+            console.log(parseInt(true));
+
+            console.log(parseInt(undefined));
+
+            console.log('============== 学习parseInt');
+
+            console.log(parseInt('NaN'));
+            console.log(parseInt('Infinity'));
+            console.log(parseInt('-Infinity'));
+
+            console.log('============== 学习parseInt');
+
+            console.log(parseInt([]));
+            console.log(parseInt({}));
+            console.log(parseInt([0], '============== ???'));
+            console.log(parseInt([0, 0]));
+            console.log(parseInt(['999', 0]));
+            console.log([].toString());
+            console.log([9, 9].toString());
+            console.log([9, 9] + '');
+
+            console.log('============== 学习parseInt');
+
+            console.log(parseInt('0b1111'));
+            console.log(parseInt('0b1111', 2));
+            console.log(parseInt('1111', 2));
+            console.log(parseInt('F', 16));
+            console.log(parseInt('1111', 5));// (1 * 5 ^ 0) + (1 * 5 ^ 1) + (1 * 5 ^ 2) + (1 * 5 ^ 3) = 156
+
+            console.log(parseInt(false, 16));
+
+            console.log(parseFloat(false, 16));
+            console.log(parseFloat({ toString: function () { return "3.14" } }));
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt
+            // 可以确定的是，parseInt会在内部隐式地转化为字符串，然后进一步运算
+            // 可以确定的是，如果参数的第一个字符不能转换为数字，则直接返回NaN（If the first character cannot be converted to a number with the radix in use, parseInt returns NaN. Leading whitespace is allowed.）
+            // 最佳实践：使用parseInt时，一定要明确传递第二个参数（[2, 36]），否则parseInt会尝试自行根据第一个参数推断进制
+        </script>
+
+        <script>
+            console.log(NaN === NaN);
+            console.log(Infinity === Infinity);
+            console.log(-Infinity === -Infinity);
+            console.log(NaN == NaN);
+            console.log(Infinity == Infinity);
+            console.log(-Infinity == -Infinity);
+
+            console.log(isNaN(NaN));
+            console.log(isNaN('99ooo'));
+        </script>
+    </body>
+
+</html>
