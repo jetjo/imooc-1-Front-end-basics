@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>变量声明提升</title>
+    </head>
+
+    <body>
+        <script>
+            // console.log(a);// 抛出异常，Uncaught ReferenceError: a is not defined
+            console.log(typeof a);// 正常, //NOTE: 所以可以用typeof检查一个变量是否声明过
+            // console.log(a === undefined);// 抛出异常
+            // console.log(a instanceof undefined);// 抛出异常
+
+            //NOTE: var变量提升只提升声明，不提升值
+            console.log(b);
+            var b = '我是b变量';
+
+            // NOTE: let、const不存在变量提升特性
+            // console.log(c);// Uncaught ReferenceError: Cannot access 'c' before initialization
+            let c = '我是变量c'
+        </script>
+    </body>
+
+</html>
