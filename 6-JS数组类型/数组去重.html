@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>数组去重</title>
+    </head>
+
+    <body>
+
+        <script>
+            const arr = [1, , 1, 2, , 3];
+            // const arr = [1, , 1, undefined, 2, , 3, undefined];
+            const res = [];
+            // 即使使用map,也不能是并行运算
+            // arr.map(e =>
+            // {
+            //     debugger
+            //     if (!res.includes(e))
+            //     {
+            //         res.push(e)
+            //     }
+            // });
+            for (let q = 0; q < arr.length; q++)
+            {
+                const e = arr[q];
+                if (!res.includes(e))
+                {
+                    res.push(e)
+                }
+            }
+            console.log(res, arr);
+            // NOTE: includes方法如果传入undefined，一定返回true???
+            console.log(res.includes(undefined));
+            console.log(res.indexOf(undefined));
+            console.log(res.lastIndexOf(undefined));
+            // 可见空白不是undefined？？？
+            console.log(arr[1]);
+            // NOTE: map方法会忽略掉数组中的空白项！！！
+        </script>
+
+        <script>
+            // const arr1 = [1, 2, , 3, 5, 5, undefined, null, undefined, 1];
+            const arr1 = [1, , 1, , 2]
+            console.log([...(new Set(arr1))]);
+        </script>
+
+    </body>
+
+</html>
