@@ -22,7 +22,7 @@
             });
         </script>
         <script>
-            console.log('==============');
+            console.log('============== 使用Boolean函数');
 
             console.log(Boolean());
             console.log(Boolean(NaN));
@@ -59,6 +59,48 @@
             console.log(Boolean(['99元']));
             console.log(Boolean([1, 1]));
             console.log(Boolean([0, 0]));
+
+            // 
+            console.log('==============');
+        </script>
+        <script>
+            console.log('============== 开始使用!!');
+
+            // console.log(!!());Uncaught SyntaxError: Unexpected token ')'
+            console.log(!!(NaN));
+            console.log(!!(null));
+            console.log(!!(undefined));
+            console.log(!!(0));
+            console.log(!!(''));
+
+            console.log('==============');
+
+            console.log(!!('  '));
+            console.log(!!('0'));
+            console.log(!!(Infinity));
+            console.log(!!(-Infinity));
+            console.log(!!('false'));
+            console.log(!!('NaN'));
+            console.log(!!('Infinity'));
+            console.log(!!('-Infinity'));
+            console.log(!!('null'));
+            console.log(!!('undefined'));
+
+            // 
+            console.log('==============');
+
+            console.log(!!([]), '==============???');
+            console.log(!!({}));
+
+            console.log(!!([1]));
+            console.log(!!([true]));
+            console.log(!!([false]));
+            console.log(!!([0]));
+            console.log(!!([99]));
+            console.log(!!(['99']));
+            console.log(!!(['99元']));
+            console.log(!!([1, 1]));
+            console.log(!!([0, 0]));
 
             // 
             console.log('==============');

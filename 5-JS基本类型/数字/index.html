@@ -151,6 +151,19 @@
             console.log(isNaN(NaN));
             console.log(isNaN('99ooo'));
         </script>
+
+        <!-- 补充 -->
+        <script>
+            console.log('=========补充');
+            console.log(4 / 0);
+            console.log(-4 / 0);
+            console.log(0 / 0);
+            console.log(-0 / 0);
+            // 0 不等于 -0？？？不是，其实是NaN 不等于 NaN
+            console.log((0 / 0) === (-0 / 0));
+            console.log(0 === (-0));
+            console.log(Infinity === Infinity);
+        </script>
     </body>
 
 </html>
