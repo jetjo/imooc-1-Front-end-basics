@@ -61,6 +61,7 @@ async function _bubbleSortWithoutTC(arr, knowMax = Infinity)
   if (arr.length < 2) return [...arr];
 
   const res = [];
+  let resLen = 0;
   let maxIndex = 0;
   const jMax = 10000;
   let i = 0, j = 0;
@@ -71,12 +72,24 @@ async function _bubbleSortWithoutTC(arr, knowMax = Infinity)
   {
     if (i === arr.length || hasGetMax)
     {
+      // 算法1
       res.push(max);
       arr.splice(maxIndex, 1);
       maxIndex = 0;
       i = 0;
-      max = 0;
+      // max = 0;
       hasGetMax = false;
+
+      // 算法2，更贴近冒泡的说法
+      // // resLen++;
+      // arr.splice(maxIndex, 1);
+      // // arr.unshift(max);
+      // arr.splice(resLen, 0, max);
+      // resLen++;
+      // maxIndex = resLen;
+      // i = resLen;
+      // // max = 0;
+      // hasGetMax = false;
     }
     if (j > jMax / 2)
     // NOTE: 上面写法，避免了如下情形：
@@ -96,16 +109,16 @@ async function _bubbleSortWithoutTC(arr, knowMax = Infinity)
     for (; i < arr.length && j < jMax; i++, j++)
     // for (let j = 0; i < arr.length && j < 1000; i++, j++)
     {
+      if (arr[i] > max)
+      {
+        max = arr[i];
+        maxIndex = i;
+      }
       if (max > knowMax) throw new Error('knowMax值小于给定数组的最大值!')
       if (max == knowMax)
       {
         hasGetMax = true;
         break;
-      }
-      if (arr[i] > max)
-      {
-        max = arr[i];
-        maxIndex = i;
       }
     }
     taskStep();
@@ -117,8 +130,12 @@ async function _bubbleSortWithoutTC(arr, knowMax = Infinity)
     await runTaskWithMicro(task, { iSync: j !== 0 });
     // await runTask(task);
   } while (arr.length);
+  // 算法2，更贴近冒泡的说法, 与方法1不同，这是在原数组中操作，剩下最后一个就不用了
+  // } while (i < arr.length - 1);
 
   return res;
+  // 算法2，更贴近冒泡的说法
+  // return arr;
 }
 
 async function bubbleSortWithoutTcAsync(arr, knowMax = Infinity)

@@ -31,7 +31,7 @@
             import { sorTest, TIMER_TAG } from './sort-utils';
 
             const arr = [];
-            while (arr.length < 50000)
+            while (arr.length < 5000)
             // while (arr.length < 10000) // Uncaught RangeError: Maximum call stack size exceeded
             {
                 arr.push(Math.floor(Math.random() * 100000));
@@ -39,6 +39,7 @@
             // console.log(bubbleSort(arr));
 
             const arr1 = arr;
+            // const arr1 = [66, 100];
             // while (arr1.length < 100000)
             // {
             //     arr1.push(Math.floor(Math.random() * 10000));
