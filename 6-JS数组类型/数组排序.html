@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>数组排序</title>
+        <!-- <script type="module" src="./sort.js"></script> -->
+        <script type="importmap">
+            {
+                "imports": {
+                    "./sort-utils": "./sort-utils.js"
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <div><button id="btn">点我</button></div>
+        <script>
+            const btn = document.getElementById('btn');
+            btn.addEventListener('click', (e) =>
+            {
+                e?.preventDefault();
+                console.log('+++++++++++++++++++++++++++++++++++++++');
+            });
+        </script>
+        <script type="module">
+            import { bubbleSort, bubbleSortWithoutTcAsync } from './sort.js';
+            import { sorTest, TIMER_TAG } from './sort-utils';
+
+            const arr = [];
+            while (arr.length < 50000)
+            // while (arr.length < 10000) // Uncaught RangeError: Maximum call stack size exceeded
+            {
+                arr.push(Math.floor(Math.random() * 100000));
+            }
+            // console.log(bubbleSort(arr));
+
+            const arr1 = arr;
+            // while (arr1.length < 100000)
+            // {
+            //     arr1.push(Math.floor(Math.random() * 10000));
+            // }
+            // console.log(bubbleSortWithoutTC(arr1));
+            // NOTE: sort.js:54 Uncaught ReferenceError: Cannot access 'res' before initialization, 不支持Toplevel await。。。
+            // const res = await bubbleSortWithoutTcAsync(arr1);
+            // console.log(res);
+            console.time(TIMER_TAG);
+            bubbleSortWithoutTcAsync(arr1).then(res =>
+            {
+                sorTest(res, TIMER_TAG);
+                console.log(res);
+            }).catch(err => console.error(err));
+        </script>
+    </body>
+
+</html>
