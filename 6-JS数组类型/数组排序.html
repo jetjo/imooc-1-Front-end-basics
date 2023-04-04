@@ -27,11 +27,11 @@
             });
         </script>
         <script type="module">
-            import { bubbleSort, bubbleSortWithoutTcAsync } from './sort.js';
+            import { bubbleSort, bubbleSortWithoutTcAsync, quicklySort } from './sort.js';
             import { sorTest, TIMER_TAG } from './sort-utils';
 
             const arr = [];
-            while (arr.length < 5000)
+            while (arr.length < 10000000)
             // while (arr.length < 10000) // Uncaught RangeError: Maximum call stack size exceeded
             {
                 arr.push(Math.floor(Math.random() * 100000));
@@ -49,11 +49,15 @@
             // const res = await bubbleSortWithoutTcAsync(arr1);
             // console.log(res);
             console.time(TIMER_TAG);
-            bubbleSortWithoutTcAsync(arr1).then(res =>
-            {
-                sorTest(res, TIMER_TAG);
-                console.log(res);
-            }).catch(err => console.error(err));
+            // bubbleSortWithoutTcAsync(arr1).then(res =>
+            // {
+            //     sorTest(res, TIMER_TAG);
+            //     console.log(res);
+            // }).catch(err => console.error(err));
+
+            const res = quicklySort(arr);
+            sorTest(res, TIMER_TAG);
+            console.log(res);
         </script>
     </body>
 

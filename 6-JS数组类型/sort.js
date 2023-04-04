@@ -158,4 +158,30 @@ async function bubbleSortWithoutTcAsync(arr, knowMax = Infinity)
   return _bubbleSortWithoutTC([...arr], knowMax);
 }
 
-export { bubbleSort, bubbleSortWithoutTcAsync }
+function quicklySort(arr)
+{
+  if (arr.length < 2) return arr;
+  const center = parseInt(arr.length / 2);
+  const centerVal = arr[center];
+  const arrL = [], arrR = [];
+  arr.forEach(e =>
+  {
+    if (e > centerVal)
+    {
+      arrL.push(e)
+    }
+    else
+    {
+      arrR.push(e)
+    }
+  });
+  // NOTE: 防止死循环
+  if (arrL.length === 0)
+  {
+    arrL.push(centerVal);
+    arrR.splice(center, 1);
+  }
+  return quicklySort(arrL).concat(quicklySort(arrR));
+}
+
+export { bubbleSort, bubbleSortWithoutTcAsync, quicklySort }
