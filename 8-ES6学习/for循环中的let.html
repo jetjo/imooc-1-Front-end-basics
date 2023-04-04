@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>for循环中的let</title>
+    </head>
+
+    <body>
+        <script>
+            function fun()
+            {
+                // NOTE: 使用let声明i，退出循环后，无法访问到i
+                for (let i = 0; i < 10; i++)
+                // NOTE: 使用var声明i，即使退出循环，仍然能在函数作用域访问到
+                // for (var i = 0; i < 10; i++)
+                // NOTE: 声明i时未使用关键字，别说是退出循环，即使退出了函数体，仍然能访问到。
+                // for (i = 0; i < 10; i++)
+                {
+                    // console.log(i);
+                }
+                // i++; //NOTE: Uncaught ReferenceError: i is not defined
+                //NOTE: 和先读取不同，先赋值，不会报错
+                // i = 100; //NOTE: 这里的i没有声明过，会自动在全局声明一个，比使用var声明的作用域还要广
+                console.log(i);
+            }
+            // console.log(i);// Uncaught ReferenceError: i is not defined
+            fun();
+            console.log(i);
+        </script>
+    </body>
+
+</html>
