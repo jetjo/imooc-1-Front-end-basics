@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ResizeObserver</title>
+        <style>
+            .box {
+                width: 200px;
+                height: 30px;
+                border: 1px solid gold;
+            }
+
+        </style>
+    </head>
+
+    <body>
+
+        <div>
+            <button id="btnWidth">改变width</button>
+            <button id="btnPadding">改变padding</button>
+            <button id="btnBorder">改变border</button>
+        </div>
+        <div id="box" class="box">
+
+        </div>
+        <script>
+            // const box = document.querySelector('.box');
+            const box = document.getElementById('box');
+            // NOTE: 经过测试得知，只有width变化时才会引发
+            const ob = new ResizeObserver((entities) =>
+            {
+                console.log({ entities });
+            });
+            ob.observe(box);
+            document.getElementById('btnWidth').addEventListener('click', () =>
+            {
+                const res = parseInt(Math.random() * 200) + 'px';
+                // const res = (parseInt(box.style.width) || 0) + parseInt(Math.random() * 200) + 'px';
+                box.style.width = res;
+            })
+            document.getElementById('btnPadding').addEventListener('click', () =>
+            {
+                box.style.paddingLeft = parseInt(Math.random() * 20) + 'px';
+            })
+            document.getElementById('btnBorder').addEventListener('click', () =>
+            {
+                box.style.borderWidth = parseInt(Math.random() * 20) + 'px';
+            })
+        </script>
+    </body>
+
+</html>

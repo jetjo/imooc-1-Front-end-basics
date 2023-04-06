@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>clientSize</title>
+        <style>
+            .box {
+                width: 100px;
+                height: 100px;
+                border: 1px solid #000;
+                overflow: auto;
+                padding: 5px;
+                display: inline;
+                display: none;
+            }
+
+            .content {
+                height: 1000px;
+                background-color: gold;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div>
+            <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/clientWidth">
+                <img src="./dimensions-client.png" alt="">
+            </a>
+        </div>
+        <div class="box">
+            <div class="content"></div>
+        </div>
+        <p id="info"></p>
+        <script>
+            const info = document.getElementById('info');
+            // NOTE: 如果是内联元素，返回0
+            info.innerHTML = document.querySelector('.box').clientWidth;
+        </script>
+    </body>
+
+</html>

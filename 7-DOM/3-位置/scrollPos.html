@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>scrollPos</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            .box {
+                margin-top: 100px;
+                border: 1px solid #000;
+                width: 200px;
+                height: 300px;
+                padding: 10px;
+                overflow-y: auto;
+            }
+
+            .content {
+                width: 500px;
+                height: 50000px;
+                background-color: gold;
+                border: 1px solid #000;
+                margin-top: 10px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="box">
+            <div class="content"></div>
+        </div>
+        <div><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTop">参见MDN解释</a></div>
+        <pre id="info"></pre>
+        <pre id="infoScrollHeight"></pre>
+        <script>
+            const contentBox = document.querySelector('.content');
+            const box = document.querySelector('.box');
+            const infoH = document.getElementById('infoScrollHeight').innerText = box.scrollHeight - box.clientHeight;
+            box.addEventListener('scroll', () =>
+            {
+                console.log('我滚了～');
+                // document.getElementById('info').innerText = contentBox.scrollTop;
+                // box.scrollTop的最大值：box.scrollHeight - box的paddingBox的高即box.clientHeight
+                document.getElementById('info').innerText = box.scrollTop;
+            });
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>offsetPos</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            .box {
+                margin-top: 100px;
+                border: 1px solid #000;
+                width: 200px;
+                height: 300px;
+                padding: 10px;
+                overflow-y: auto;
+                /* NOTE: 可见盒子的包含块和盒子的 offsetParent 不是一个概念 */
+                /* https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block */
+                /* https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetParent */
+                /* position: relative; */
+            }
+
+            .content {
+                width: 50%;
+                height: 50000px;
+                background-color: gold;
+                border: 1px solid #000;
+                margin-top: 10px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="box">
+            <div class="content"></div>
+        </div>
+        <div><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop">参见MDN解释</a></div>
+        <pre id="info"></pre>
+        <pre id="infoScrollHeight"></pre>
+        <script>
+            const contentBox = document.querySelector('.content');
+            const box = document.querySelector('.box');
+            document.getElementById('info').innerText = contentBox.offsetTop;
+            // const infoH = document.getElementById('infoScrollHeight').innerText = box.scrollHeight - box.clientHeight;
+            box.addEventListener('scroll', () =>
+            {
+                console.log('我滚了～');
+                document.getElementById('info').innerText = contentBox.offsetTop;
+            });
+        </script>
+    </body>
+
+</html>
