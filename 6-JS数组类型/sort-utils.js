@@ -5,7 +5,8 @@ function runTask(task, args = { isLoopTask: true })
   {
     setTimeout(() =>
     {
-      res(task(args));
+      const data = task(args);
+      res(data);
     }, 0);
     if (args.isLoopTask)
     {
@@ -64,7 +65,25 @@ function sorTest(arr = [])
   })
   console.log('排序正确！');
   console.timeEnd(TIMER_TAG)
+  return true;
 }
 
+function arrValidBeforeSort(arr, cb)
+{
+  if (!Array.isArray(arr)) throw new Error('参数必须是数组!')
+  if (cb)
+  {
+    if (arr.length < 2) return [...arr];
+    // NOTE: 尽量保持纯度，不是什么单一职责的问题，而是每一个函数尽量做的
+    return cb([...arr]);
+  }
+}
 
-export { runTask, sorTest, runTaskWithMicro, TIMER_TAG }
+const jMax = 1e13;
+// Mac顶配，此值开始卡顿
+// const jMin = 1e9;
+// Mac顶配，恰好
+// const jMin = 1e8;
+const jMin = 5e7;
+
+export { runTask, sorTest, runTaskWithMicro, TIMER_TAG, arrValidBeforeSort, jMax, jMin }

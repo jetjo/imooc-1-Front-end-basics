@@ -18,6 +18,7 @@
 
     <body>
         <div><button id="btn">点我</button></div>
+        <div id="res"></div>
         <script>
             const btn = document.getElementById('btn');
             btn.addEventListener('click', (e) =>
@@ -27,37 +28,28 @@
             });
         </script>
         <script type="module">
-            import { bubbleSort, bubbleSortWithoutTcAsync, quicklySort } from './sort.js';
+            import { bubbleSorTC, bubbleSortAsync, quicklySort, quicklySorTC } from './sort.js';
             import { sorTest, TIMER_TAG } from './sort-utils';
 
             const arr = [];
-            while (arr.length < 10000000)
-            // while (arr.length < 10000) // Uncaught RangeError: Maximum call stack size exceeded
+            while (arr.length < 1e6)
             {
                 arr.push(Math.floor(Math.random() * 100000));
             }
-            // console.log(bubbleSort(arr));
 
-            const arr1 = arr;
-            // const arr1 = [66, 100];
-            // while (arr1.length < 100000)
-            // {
-            //     arr1.push(Math.floor(Math.random() * 10000));
-            // }
-            // console.log(bubbleSortWithoutTC(arr1));
-            // NOTE: sort.js:54 Uncaught ReferenceError: Cannot access 'res' before initialization, 不支持Toplevel await。。。
-            // const res = await bubbleSortWithoutTcAsync(arr1);
-            // console.log(res);
             console.time(TIMER_TAG);
-            // bubbleSortWithoutTcAsync(arr1).then(res =>
+
+            // const res = bubbleSorTC(arr);
+
+            // bubbleSortAsync(arr).then(res =>
             // {
-            //     sorTest(res, TIMER_TAG);
-            //     console.log(res);
+            //     document.getElementById('res').innerHTML = res.length + ',' + sorTest(res);
             // }).catch(err => console.error(err));
 
-            const res = quicklySort(arr);
-            sorTest(res, TIMER_TAG);
-            console.log(res);
+            // const res = quicklySort(arr);
+            const res = quicklySorTC(arr);
+
+            document.getElementById('res').innerHTML = res.length + ',,,,' + sorTest(res);
         </script>
     </body>
 

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>j结合冒泡排序算法探讨forEach</title>
+    </head>
+
+    <body>
+        <script>
+
+            function _bubbleSort__(arr, res = [], knowMax = Infinity)
+            {
+                if (arr.length < 2) return res.concat(arr);
+
+                //{
+                let maxIndex = 0;
+                let max = arr[maxIndex];
+                // let max = -Infinity;
+                // NOTE: forEach方法的第一个参数是一个函数，其返回值无意义，返回undefined即可
+                // NOTE: forEach方法的遍历范围在第一次循环时确定，在遍历过程中向数组追加的元素不会被访问到
+                // NOTE: forEach方法是泛型的，只要对象拥有length和数字名称的成员
+                // NOTE: forEach方法无法中途终止
+                // NOTE: forEach方法的第一个参数如果返回promise，forEach不会等待promise,只要函数参数中的同步代码完成即进行下一次循环
+                // let j = 0;
+                // arr.forEach((e, i) =>
+                // {
+                //   if (e > max)
+                //   {
+                //     max = e;
+                //     j = i;
+                //   }
+                //   // if (max === knowMax) break;
+                // })
+                // for (; j < arr.length; j++)
+                for (let j = 0; j < arr.length; j++)//这样写，退出循环后就访问不到j了
+                {
+                    if (max > knowMax) throw new Error('knowMax值小于给定数组的最大值!')
+                    if (max == knowMax) break;
+                    // 不妥，因为其他关系运算符也没有比较类型
+                    // if (max === knowMax) break;
+                    if (arr[j] > max)
+                    {
+                        max = arr[j];
+                        maxIndex = j;
+                    }
+                }
+                res.push(max);
+                // res.push(Math.max())
+                const next = arr; //[...arr];
+                // delete next[j];
+                next.splice(maxIndex, 1);
+                return _bubbleSort_(next, res, knowMax);//NOTE: 在块作用域底部的return...还是尾调用吗？？？
+                //}
+                // return _bubbleSort_(arr.slice(1), res, knowMax);// 不支持尾调用优化的浏览器可能堆栈溢出
+                // arr.splice(0, 1);
+                // return _bubbleSort_(arr, res, knowMax);
+            }
+
+        </script>
+    </body>
+
+</html>
