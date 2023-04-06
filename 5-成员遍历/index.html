@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <!-- for of -->
+        <script>
+            let o = {
+                a: 1,
+                b: 2
+            };
+            const oo = {
+                "__proto__": { xx: 'xx' },
+                ...o,
+                [Symbol.iterator]: () =>
+                {
+                    let i = 0;
+                    const keys = Object.keys(oo);
+                    return {
+                        next()
+                        {
+                            const res = {
+                                value: oo[keys[i]],
+                                done: i >= keys.length
+                            }
+                            i += 1;
+                            return res;
+                        }
+                    }
+                }
+            }
+            for (const iterator of oo)
+            // for (const iterator of o)// caught TypeError: o is not iterable
+            {
+                console.log(iterator);
+            }
+        </script>
+
+        <!-- for in -->
+        <script>
+            const xxx = Symbol('xxx')
+            const o1 = {
+                a: 1,
+                b: 2,
+                [xxx]: 'xxx',
+                99: '99',
+                ff: function ()
+                {
+
+                }
+            }
+            // Object.keys 和 for in 都不会获取到成员名是Symbol的成员
+            console.log(Object.keys(o1));
+            const oo1 = Object.create(o1, {
+                c: {
+                    value: 3,
+                    enumerable: true
+                },
+                d: {
+                    value: 4
+                },
+                _e: {
+                    value: '',
+                    writable: true
+                },
+                e: {
+                    set(value)
+                    {
+                        // this.e = value//NOTE: 死循环了。。。
+                        this._e = value//NOTE: _e必须是writable，否则无效
+                    },
+                    enumerable: true
+                },
+                [xxx]: {
+                    value: 'xxx',
+                    enumerable: true
+                }
+            });
+            //NOTE: Object.keys方法不会获取原型链上的成员，也不会获取enumerable不是true的成员
+            console.log(Object.keys(oo1));
+            const object = oo1;
+            // NOTE: for in 方法会额外获取原型链上的成员，只要enumerable是true
+            for (const key in object)
+            {
+                console.log({ key });
+                if (Object.hasOwnProperty.call(object, key))
+                {
+                    const element = object[key];
+                }
+            }
+            object.e = 100;
+            console.log({ oo1 });
+            console.log(oo1[xxx]);
+        </script>
+    </body>
+
+</html>

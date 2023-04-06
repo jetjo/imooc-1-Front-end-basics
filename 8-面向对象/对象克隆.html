@@ -10,7 +10,8 @@
 
     <body>
         按下F12打开控制台
-        <script>
+        <script type="module">
+            import { shadowClone } from '../8-算法/clone.js'
             var obj1 = {
                 a: 1,
                 b: 3,
@@ -21,28 +22,41 @@
                 }]
             }
 
-            //浅克隆
-            function shadowClone(obj)
-            {
-                if (typeof obj !== 'object') return obj;
-                var result = {};
-                for (var k in obj)
-                {
-                    result[k] = obj[k];
-                }
-                return result;
-            }
+            // //浅克隆
+            // function shadowClone(obj)
+            // {
+            //     if (typeof obj !== 'object') return obj;
+            //     var result = {};
+            //     for (var k in obj)
+            //     {
+            //         result[k] = obj[k];
+            //     }
+            //     return result;
+            // }
 
             var obj2 = shadowClone(obj1);
 
-            console.log(JSON.parse(JSON.stringify(obj2)));
+            console.log(JSON.parse(JSON.stringify(obj2)), '---------');
 
             obj1.c.shift();
             //藕断丝连
             console.log(JSON.parse(JSON.stringify(obj2)));
         </script>
 
-        <script>
+        <script type="module">
+            // import { deepClone } from '../8-算法/clone.js'
+            var obj1 = {
+                __proto__: {
+                    xxx: 'xxx'
+                },
+                a: 1,
+                b: 3,
+                c: ['', 88, {
+                    o: 0,
+                    name: 'xxx',
+                    wife: ['xxx', 'xxx']
+                }]
+            }
             //深克隆
             function deepClone(obj)
             {
@@ -57,9 +71,13 @@
                     return result;
                 }
                 var result = {};
+                // NOTE: for in会遍历到原型链上的成员,如果不排除，这样的话，深度可用的后果是：本来在原型链上的成员变成了自身的成员！！！
                 for (var k in obj)
                 {
-                    result[k] = deepClone(obj[k]);
+                    if (Object.hasOwnProperty.call(obj, k))
+                    {
+                        result[k] = deepClone(obj[k]);
+                    }
                 }
                 return result;
             }
@@ -67,6 +85,7 @@
 
             console.log(JSON.parse(JSON.stringify(obj3)));
 
+            obj1.c.shift();
             obj1.c[1].wife.push('xxxnm');
             console.log(JSON.parse(JSON.stringify(obj3)));
             console.log({ obj1 });
