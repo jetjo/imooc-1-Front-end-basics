@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>with运算符</title>
+        <style>
+            h2 {
+                margin: 0 auto;
+                color: red;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <h2>本页面主要的是借用with语句，引出一些概念，with语句本身已经废弃，千万不要使用了！！！</h2>
+        <p>
+        <figure>
+            <figcaption><a
+                    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/with">参见MDN</a>
+            </figcaption>
+            访问一个变量时，会依次从内层到外层Scope查找这个变量的定义位置；而如果访问的是一个对象的成员，则是在这个对象的本身及其原型链上查找定义位置，
+            with的作用是声明：以下语句（块）中的变量要在指定的对象身上查找。
+        </figure>
+        <script>
+            var a = 'a'
+            var b = 'b'
+            var o = {
+                __proto__: { b: 2 },
+                a: 1
+            }
+
+            with (o)
+            {
+                console.log(a);//这里打印 1 。。。
+                console.log(b);
+            }
+        </script>
+        </p>
+    </body>
+
+</html>

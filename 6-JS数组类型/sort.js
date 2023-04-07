@@ -207,21 +207,27 @@ function quicklySorTC(arr)
     let flag = true;
     arr.forEach(t =>
     {
-      if (!Array.isArray(t))
-      {
-        res.push(t);
-      }
-      else if (t.length === 1)
-      {
-        res.push(...t);
-      }
-      else if (t.length > 1)
+      // if (!Array.isArray(t))
+      // {
+      //   res.push(t);
+      // }
+      // else if (t.length === 1)
+      // {
+      //   res.push(...t);
+      // }
+      // else
+      if (t.length > 1)
       {
         flag = false;
         res.push(..._arr2LR_(t));
       }
+      else
+      {
+        res.push(t);
+      }
     })
-    return flag ? res : _quickSorTC_(res);
+    // return flag ? res : _quickSorTC_(res);
+    return flag ? res.flat() : _quickSorTC_(res);
   }
   return arrValidBeforeSort(arr, (arrShadowCopy) => _quickSorTC_([arrShadowCopy]));
 }

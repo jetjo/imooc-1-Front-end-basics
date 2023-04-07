@@ -10,9 +10,44 @@
 
     <body>
         按下F12打开控制台
+        <p>
+            为了保证安全性，不同页面的Array不是同一个，所以在一个页面中判断指向另一个页面中的数组对象时（Cross-Realm），instanceof 运算符返回false，
+            这种情况下只能用Array.isArray判断。 <br>
+            instanceof判断的是参数是否是当前页面中的Array的实例，而Array.isArray不关心参数来自于哪一个窗口(Window),只要是使用数组字面量或者“new Array()”又或者“Array()”
+            创建的数组就可以。
+            <br>
+            <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray">参考MDN</a>
+            <br>
+            <a href="./isArray.html">参考另一篇blog</a>
+        </p>
         <script>
             console.log(typeof []);
             console.log(Array.isArray([]));
+            console.log(Array.isArray(Array()));
+            console.log(Array.isArray(new Array()));
+            console.log(Array.isArray(Array.prototype));//NOTE: !!!
+
+            console.log(Array.isArray({ __proto__: Array.prototype }));
+            console.log(Array.isArray(new Int32Array(1)));
+            console.log(Array.isArray('bbb'));
+        </script>
+        <script>
+            const iframe = document.createElement("iframe");
+            document.body.appendChild(iframe);
+            const w = window.frames[window.frames.length - 1];
+            const xArray = w.Array;
+            const xObject = w.Object;
+            const arr = new xArray(1, 2, 3); // [1, 2, 3]
+
+            console.log(xArray !== Array, xArray(), Array());
+            console.log(xObject !== Object, new xObject(), new Object());
+
+            // Correctly checking for Array
+            console.log(Array.isArray(arr));; // true
+            // The prototype of arr is xArray.prototype, which is a
+            // different object from Array.prototype
+            console.log(arr instanceof Array);; // false
         </script>
     </body>
 

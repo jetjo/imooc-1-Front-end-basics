@@ -1,0 +1,177 @@
+<h2>
+  <a href="https://web.mit.edu/jwalden/www/isArray.html" title="去往原始页面">
+    Determining with absolute accuracy whether or not a JavaScript object is an array
+  </a>
+</h2>
+
+<h3>Typing problems in JavaScript</h3>
+
+<p>JavaScript's <code>typeof</code> operator is well known to have confusing behavior:
+  <code>typeof null === "object"</code>, and <code>typeof null !== 
+"null"</code>. This mistake trips up newcomers, and every so often it'll trip up a seasoned yet forgetful veteran, but
+  we've basically grown used to it.
+  Perhaps more important, there's a failsafe workaround: simply compare directly as <code>v === null</code> to eliminate
+  <code>null</code> from the
+  possibilities under consideration.
+</p>
+
+<h3>Determining whether a value is an array</h3>
+
+<p><code>typeof null === "object"</code> is perhaps the most common typing mistake in JavaScript, but there are others
+  as well. A much less common but no
+  less confusing problem is that of determining whether an object is an array. Surely, say you, this is a simple problem
+  with a simple solution, like
+  so:</p>
+
+<pre>
+if (o instanceof Array)
+{
+  // <span title="Hey, a rhyme!  jorendorff, are you reading this?  ;-)">Oh frabjous day!</span>
+}
+</pre>
+
+<p>Under certain circumstances, the above code is perfectly functional; considering the history of the web, it's not
+  surprising the issue wasn't quickly
+  apparent. The problem arises when one considers an aspect of JavaScript in browsers not contemplated by ECMAScript:
+  multiple globals.</p>
+
+<p>The ECMAScript specification describes the environment and mechanisms involved in executing a string of code. The
+  syntax and basic semantics of
+  language constructs are certainly important, but without the built-in methods and objects coding in ECMAScript
+  wouldn't be much fun. These methods and
+  objects are accessed through the global object, and it is here where things go astray. The ECMAScript 3 environment
+  implicitly assumes the existence of a
+  single global (or, perhaps, of islands each of which is its own environment, with no interaction between them) and
+  does not in any manner address the idea
+  of multiple globals.</p>
+
+<p>Multiple globals, however, are fundamental to the browser; each <code>window</code> object is the global object for
+  the scripts its page contains or
+  references. What about arrays in different windows? The shared-mutation hazard of having arrays in two coordinating
+  windows be instances of the same
+  <code>Array</code> constructor, sharing the same <code>Array.prototype</code>, is enormous when either page augments
+  <code>Array.prototype</code> (not to
+  mention the security problems when one page is malicious!), so <code>Array</code> and <code>Array.prototype</code> in
+  each window must be different.
+  Therefore, by the semantics of <code>instanceof</code>, <code>o instanceof Array</code> works correctly only if
+  <code>o</code> is an array created by that
+  page's original <code>Array</code> constructor (or, equivalently, by use of an array literal in that page). <span
+    title="NB: this is a valid word in 
+Scrabble &mdash; play it!">Pfui</span>.
+</p>
+
+<p>Are there any other methods of determining whether a value is an array that might work around this?
+  <code>o.constructor === Array</code> is one, with
+  the same problem as an <code>instanceof</code> check. Another option relies on so-called "duck typing", where if a
+  value
+  <del>quacks</del><ins>looks</ins> like <del>a duck</del><ins>an array</ins> then it <em>is</em> <del>a
+    duck</del><ins>an array</ins>. Along the
+  <code>constructor</code>-checking lines, you could check for other array methods like <code>push</code> or
+  <code>concat</code>, or perhaps for a
+  <code>length</code> property, but these properties could exist in the same fashion on a non-array object. If you're
+  willing to have false positives and
+  negatives (assuming unconstrained input) that might be acceptable, but of course that won't always be the case. One
+  test in this style is
+  <code>Object.prototype.toString.call(o) === "[object Array]"</code>, but that relies on
+  <code>Object.prototype.toString</code> and
+  <code>Function.prototype.call</code> not being changed (probably a good assumption but still fragile). It's also a bit
+  more of an obvious hack than any
+  of the other ideas.
+</p>
+
+<h3>Enter <code>Array.isArray</code></h3>
+
+<p>For these reasons, ECMAScript 5 defines a method, <code>Array.isArray</code>, to completely address the problem. If
+  the first argument provided is an
+  array object created in any window at all, it returns <code>true</code>; if no arguments were provided or if the first
+  argument wasn't an array object, it
+  returns <code>false</code>.</p>
+
+<pre>
+function test(fun, expect) { if (fun() !== expect) alert("FAIL: " + fun); }
+test(function() { return Array.isArray([]); }, true);
+test(function() { return Array.isArray(new Array); }, true);
+test(function() { return Array.isArray(); }, false);
+test(function() { return Array.isArray({ constructor: Array }); }, false);
+test(function() { return Array.isArray({ push: Array.prototype.push, concat: Array.prototype.concat }); }, false);
+test(function() { return Array.isArray(17); }, false);
+Object.prototype.toString = function() { return "[object Array]"; };
+test(function() { return Array.isArray({}); }, false);
+test(function() { return Array.isArray({ __proto__: Array.prototype }); }, false);
+test(function() { return Array.isArray({ length: 0 }); }, false);
+
+var w = window.open("about:blank");
+w.onload = function()
+{
+  test(function() { return Array.isArray(arguments); }, false);
+  test(function() { return Array.isArray(new w.Array); }, true);
+};
+</pre>
+
+<p>Does this method provide any additional functionality beyond the hacks? One important use is for implementing
+  variadic methods. Consider, for
+  example, MochiKit's <a
+    href="http://mochikit.com/doc/html/MochiKit/Base.html#fn-flattenarray"><code>MochiKit.Base.flattenArray</code></a>
+  method, whose
+  documentation states that it:</p>
+
+<blockquote>
+  <p>Return a new Array consisting of every item in lst with Array items expanded in-place recursively. This differs
+    from flattenArguments in
+    that it only takes one argument and it only flattens items that are instanceof Array.</p>
+</blockquote>
+
+<p>If you happen to be writing JavaScript that crosses window boundaries passing around arrays, you're out of luck
+  trying to use
+  <code>flattenArray</code>. From the <a href="http://mochikit.com/examples/interpreter/index.html">MochiKit
+    interpreter</a>, note the <code>instanceof 
+Array</code> check, with a little reformatting:
+</p>
+
+<pre>
+&gt;&gt;&gt; MochiKit.Base._flattenArray.toSource()
+(function (res, lst) {
+  for (var i = 0; i &lt; lst.length; i++) {
+    var o = lst[i];
+    if (o instanceof Array) {
+      arguments.callee(res, o);
+    } else {
+      res.push(o);
+    }
+  }
+  return res;
+})
+</pre>
+
+<p>This is currently <em>cross-window FAIL</em>. :-) MochiKit can't actually implement exactly what a strict reading of
+  its documentation would claim.
+  Using <code>Array.isArray</code> with a feature-detection guard, however, will make it work correctly on arrays not
+  from the window in which MochiKit.Base
+  is being used.</p>
+
+<p>It's worth noting that MochiKit's not the only framework out there that tries to hackily determine whether a value is
+  an array. Dojo, for example, has
+  <a href="http://docs.dojocampus.org/dojo/isArray#caveats"><code>dojo.isArray</code></a> with similar limitations, and
+  I suspect this is a common problem
+  across many JS codebases.
+</p>
+
+<h3>When can I use it?</h3>
+
+<p>Technically, the answer to this question is: as soon as you want! The usual feature-testing for
+  <code>Array.isArray</code> allows you to use this
+  method if it exists and ignore it if it doesn't. You will be able to <em>meaningfully</em> use it, however, starting
+  with Firefox 3.6. WebKit nightlies
+  have also added support for it, so it will presumably be in future Safari and Chrome releases. I don't know about
+  other vendors, but
+  <code>Array.isArray</code>'s utter triviality to implement (it was a 15-line patch for Mozilla with no complexity
+  whatsoever, and a good bit of that was
+  SpiderMonkey coding idioms) suggests that if you ask, they will provide.
+</p>
+
+<h3>Acknowledgements</h3>
+
+<p>I found <a
+    href="http://thinkweb2.com/projects/prototype/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/">this
+    article</a> helpful in
+  examining some of the hacks to determine whether or not an object is "most likely" an array.</p>
