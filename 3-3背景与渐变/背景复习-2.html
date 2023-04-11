@@ -26,11 +26,17 @@
                 height: 10px;
             }
 
+            .sm-img {
+                background-image: url(./avart-sm.png);
+            }
+
             .bmg-size {
                 /* 默认值是既不缩小也不放大 */
                 /* 图片的一个维度正好占满容器的对应维度，另一个维度不足以沾满容器的对应的维度 */
+                /* NOTE: 已经测试，即会缩小也会放大 */
                 background-size: contain;
                 /* 图片的一个维度正好占满容器的对应维度，另一个维度超出了容器对应的维度 */
+                /* NOTE: 已经测试，即会缩小也会放大 */
                 background-size: cover;
                 /* 写一个值时，指的是宽，高等比缩放 */
                 background-size: 50%;
@@ -44,6 +50,8 @@
     <body>
         <div class="bmg bmg-size"></div>
         <div class="bmg bmg-small bmg-size"></div>
+        <div class="bmg sm-img bmg-size"></div>
+        <div class="bmg sm-img bmg-small bmg-size"></div>
     </body>
 
 </html>
